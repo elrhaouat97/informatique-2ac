@@ -4302,3 +4302,34 @@ a:focus-visible {
 /* Hero guided-start emphasis */
 .hero-start { animation: hero-pulse 2.6s ease-in-out infinite; }
 @keyframes hero-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(250,204,21,.45); } 50% { box-shadow: 0 0 0 9px rgba(250,204,21,0); } }
+
+/* ——— Fix plan (student test 2026-11-09): anti-blocking, Arabic-first prompts, encouragement ——— */
+.prompt-ar-first { display: grid; gap: 3px; margin: 0; }
+.prompt-ar-first .prompt-ar { font-size: 19px; font-weight: 700; line-height: 1.75; color: var(--navy-deep); font-family: "Cairo", Tahoma, sans-serif; }
+.prompt-ar-first .prompt-fr { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+.exercise-next-hint {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 8px;
+  margin: 2px 0 0; padding: 9px 13px; border-radius: 10px;
+  background: #fff7dd; border: 1px dashed #d9a514; color: #6b5310;
+  font-size: 14px; font-weight: 600; line-height: 1.6;
+}
+.exercise-help {
+  grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  margin-top: 4px; padding: 12px 16px; border-radius: 12px;
+  background: #eef8fd; border: 1.5px solid #bfe3f2; color: var(--navy);
+}
+.exercise-help p { margin: 0; font-size: 15.5px; line-height: 1.7; }
+.exercise-help button {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border: 0; border-radius: 10px;
+  background: var(--navy); color: #fff; font-size: 15px; font-weight: 800; cursor: pointer;
+}
+.exercise-help button:hover { background: var(--navy-deep); }
+.exercise-milestone { display: flex; align-items: center; gap: 6px; margin-top: 5px; font-size: 13.5px; font-weight: 700; color: #b45309; }
+.mission-goal {
+  display: flex; align-items: center; gap: 11px;
+  padding: 13px 17px; margin-bottom: 16px;
+  border-radius: 13px; background: linear-gradient(120deg, #fff7dd, #eef8fd);
+  border: 1.5px solid #ecd27a; color: var(--navy-deep);
+}
+.mission-goal p { margin: 0; font-size: 17px; line-height: 1.7; }

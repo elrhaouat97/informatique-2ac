@@ -104,7 +104,9 @@ export function WorkshopSummary({ sessionId, participantId, state, onBack, onRes
     {!teacher && <>
       <div className="workshop-summary-metrics">
         <article><Text value={t("Progression du parcours", "تقدم المسار")} /><strong>{total.percent} %</strong><progress aria-label="Progression du parcours" max={100} value={total.percent} /></article>
-        <article><Text value={t("Note indicative de l’atelier", "النقطة التقديرية للورشة")} /><strong>{grade === undefined ? "—" : `${grade} / 20`}</strong><small>{total.finished} / {rows.length} <Text value={t("terminés", "مكتملة")} /></small></article>
+        {total.finished >= rows.length
+          ? <article><Text value={t("Note indicative de l’atelier", "النقطة التقديرية للورشة")} /><strong>{grade === undefined ? "—" : `${grade} / 20`}</strong><small>{total.finished} / {rows.length} <Text value={t("terminés", "مكتملة")} /></small></article>
+          : <article><Text value={t("Encouragement", "تشجيع")} /><strong>{total.finished > 0 ? "⭐".repeat(Math.min(3, Math.max(1, Math.ceil(total.finished / 5)))) : "🚀"}</strong><small>{total.finished} / {rows.length} <Text value={t("terminés — continue, tu es sur la bonne voie !", "مكتملة — واصل، أنت في الطريق الصحيح!")} /></small></article>}
         <article><Text value={t("Réussite des tentatives", "نسبة نجاح المحاولات")} /><strong>{total.successRate === null ? "—" : `${total.successRate} %`}</strong><small><Text value={t(`${total.correct} sur ${total.graded} tentatives corrigées`, `${total.correct} من ${total.graded} محاولات مصححة`)} /></small></article>
       </div>
       {firstMissing >= 0 && <button type="button" className="workshop-summary-link" onClick={() => onResume(firstMissing)}>

@@ -788,6 +788,12 @@ function MissionView({ session, lang, completed, onToggleCompleted, onBack, onSt
       ];
   return (
     <div className="tab-content simple-mission page-enter">
+      {session.objectives[0] && (
+        <div className="mission-goal" role="note">
+          <Sparkles size={19} aria-hidden="true" />
+          <p><strong lang="ar" dir="rtl">هدف الحصة:</strong> <span lang="ar" dir="rtl">{session.objectives[0].ar}</span></p>
+        </div>
+      )}
       <section className={`session-hero unit-${session.unit}`}>
         <div className="session-hero-number"><span>{labels.session}</span><strong>{padTime(session.id)}</strong></div>
         <div className="session-hero-copy">
@@ -978,7 +984,7 @@ function MissionView({ session, lang, completed, onToggleCompleted, onBack, onSt
   );
 }
 
-function ExerciseNavigation({ index, total, done, lang, onPrevious, onNext, nextLabel, nextDisabled = false, progressLabel, resultStatus }: {
+function ExerciseNavigation({ index, total, done, lang, onPrevious, onNext, nextLabel, nextDisabled = false, progressLabel, resultStatus, onReviewLesson }: {
   index: number;
   total: number;
   done: number;
@@ -989,9 +995,17 @@ function ExerciseNavigation({ index, total, done, lang, onPrevious, onNext, next
   nextDisabled?: boolean;
   progressLabel?: LocalizedText;
   resultStatus?: boolean | null;
+  onReviewLesson?: () => void;
 }) {
   const teacherMode = useTeacherCourse();
   const percent = total ? Math.round(done / total * 100) : 0;
+  const milestone = teacherMode ? null : done >= total && total > 0
+    ? { fr: "Atelier terminé, bravo !", ar: "أنهيت كل تمارين الورشة، برافو!" }
+    : done >= 10
+      ? { fr: "Excellent rythme, continue !", ar: "إيقاع رائع، واصل!" }
+      : done >= 5
+        ? { fr: "Beau travail, tu avances bien !", ar: "عمل جميل، أنت تتقدم بسرعة!" }
+        : null;
   return (
     <nav className="exercise-navigation simple-exercise-navigation" aria-label="Navigation des exercices / التنقل بين التمارين">
       <button type="button" disabled={index === 0} onClick={onPrevious}>
@@ -1004,6 +1018,7 @@ function ExerciseNavigation({ index, total, done, lang, onPrevious, onNext, next
           <span style={{ width: `${percent}%` }} />
         </div>}
         {teacherMode ? <small>Mode professeur · navigation libre</small> : <small>{done}/{total} {txt(progressLabel ?? { fr: "réussis", ar: "ناجحة" }, lang)}</small>}
+        {milestone && <div className="exercise-milestone" role="status"><span aria-hidden="true">⭐</span><BilingualText value={milestone} /></div>}
         {!teacherMode && resultStatus !== undefined && resultStatus !== null && (
           <div className={`exercise-current-status ${resultStatus === true ? "success" : resultStatus === false ? "retry" : "waiting"}`} role="status" aria-live="polite">
             {resultStatus === true ? <CheckCircle2 size={16} /> : resultStatus === false ? <AlertTriangle size={16} /> : <LockKeyhole size={16} />}
@@ -1017,6 +1032,15 @@ function ExerciseNavigation({ index, total, done, lang, onPrevious, onNext, next
         <BilingualText value={nextLabel ?? { fr: "Exercice suivant", ar: "التمرين التالي" }} />
         <ArrowRight size={18} />
       </button>
+      {!teacherMode && nextDisabled && resultStatus !== true && (
+        <p className="exercise-next-hint"><LockKeyhole size={14} aria-hidden="true" /><span lang="ar" dir="rtl">جرّب هاد التمرين أولا — ملي تحاول، غادي يتفتح ليك التالي وخا ما كملتيش، وترجع ليه من بعد من الحصيلة.</span></p>
+      )}
+      {!teacherMode && resultStatus === false && onReviewLesson && (
+        <div className="exercise-help">
+          <p><span lang="ar" dir="rtl"><strong>صعب شوية؟</strong> الجواب موجود في خلاصة الدرس — راجعها وارجع لهاد التمرين.</span></p>
+          <button type="button" onClick={onReviewLesson}><BookOpen size={16} /><span lang="ar" dir="rtl">راجع خلاصة الدرس</span></button>
+        </div>
+      )}
     </nav>
   );
 }
@@ -1048,6 +1072,7 @@ function ExercisePlayer({
   onResult,
   draft,
   onDraftChange,
+  participantId,
 }: {
   exercise: Unit1Exercise;
   lang: Lang;
@@ -1056,6 +1081,7 @@ function ExercisePlayer({
   onResult: (answer: unknown, correct: boolean, score: number) => void;
   draft?: ExerciseDraft;
   onDraftChange: (draft: ExerciseDraft) => void;
+  participantId?: string;
 }) {
   type WorkingDraft=Omit<ExerciseDraft,"multi">&{multi:Set<number>};
   const initialDraft:WorkingDraft={choice:draft?.choice??null,multi:new Set(draft?.multi??[]),matches:draft?.matches??{},sequence:draft?.sequence??[],textValue:draft?.textValue??"",conversionValues:draft?.conversionValues??{},diagnosticComponent:draft?.diagnosticComponent??null,diagnosticRepair:draft?.diagnosticRepair??null,gestureProgress:draft?.gestureProgress??(exercise.type==="gesture"&&exercise.mode==="precision"&&alreadyCompleted?5:0),systemLab:draft?.systemLab,windows11:draft?.windows11,result:draft?draft.result:(alreadyCompleted?true:null)};
@@ -1065,17 +1091,18 @@ function ExercisePlayer({
   const setChoice=useLearningField(setWorking,"choice"),setMulti=useLearningField(setWorking,"multi"),setMatches=useLearningField(setWorking,"matches"),setSequence=useLearningField(setWorking,"sequence"),setTextValue=useLearningField(setWorking,"textValue"),setConversionValues=useLearningField(setWorking,"conversionValues"),setDiagnosticComponent=useLearningField(setWorking,"diagnosticComponent"),setDiagnosticRepair=useLearningField(setWorking,"diagnosticRepair"),setGestureProgress=useLearningField(setWorking,"gestureProgress"),setSystemLab=useLearningField(setWorking,"systemLab"),setWindows11=useLearningField(setWorking,"windows11"),setResult=useLearningField(setWorking,"result");
   const [dragSelection,setDragSelection]=useState<number|null>(null);
   const resultRef=useRef<HTMLDivElement>(null);
+  const seedPrefix = `${participantId ?? "anon"}-`;
   const choiceOrder = useMemo(
-    () => shuffledIndices(exercise.type === "choice" || exercise.type === "multi" ? exercise.choices.length : 0, `${exercise.id}-choices`),
+    () => shuffledIndices(exercise.type === "choice" || exercise.type === "multi" ? exercise.choices.length : 0, `${seedPrefix}${exercise.id}-choices`),
     [exercise],
   );
   const categoryOrder = useMemo(
-    () => shuffledIndices(exercise.type === "match" ? exercise.categories.length : 0, `${exercise.id}-categories`),
+    () => shuffledIndices(exercise.type === "match" ? exercise.categories.length : 0, `${seedPrefix}${exercise.id}-categories`),
     [exercise],
   );
   const sequenceOrder = useMemo(
     () => {
-      const order = shuffledIndices(exercise.type === "sequence" ? exercise.steps.length : 0, `${exercise.id}-sequence`);
+      const order = shuffledIndices(exercise.type === "sequence" ? exercise.steps.length : 0, `${seedPrefix}${exercise.id}-sequence`);
       return exercise.type === "sequence" && exercise.id.startsWith("s3-") && order.every((value, index) => value === index)
         ? exercise.shuffled
         : order;
@@ -1083,11 +1110,11 @@ function ExercisePlayer({
     [exercise],
   );
   const diagnosticComponentOrder = useMemo(
-    () => shuffledIndices(exercise.type === "diagnostic" ? exercise.components.length : 0, `${exercise.id}-components`),
+    () => shuffledIndices(exercise.type === "diagnostic" ? exercise.components.length : 0, `${seedPrefix}${exercise.id}-components`),
     [exercise],
   );
   const diagnosticRepairOrder = useMemo(
-    () => shuffledIndices(exercise.type === "diagnostic" ? exercise.repairs.length : 0, `${exercise.id}-repairs`),
+    () => shuffledIndices(exercise.type === "diagnostic" ? exercise.repairs.length : 0, `${seedPrefix}${exercise.id}-repairs`),
     [exercise],
   );
 
@@ -1228,8 +1255,8 @@ function ExercisePlayer({
         </div>
         <h3><BilingualText value={exercise.title} /></h3>
         <div className="exercise-prompt">
-          <span className="instruction-label">Consigne / التعليمة</span>
-          <BilingualText value={exercise.prompt} />
+          <span className="instruction-label">التعليمة · Consigne</span>
+          <p className="prompt-ar-first"><span lang="ar" dir="rtl" className="prompt-ar">{exercise.prompt.ar}</span><small className="prompt-fr">{exercise.prompt.fr}</small></p>
           {exercise.tasks && <ol className="exercise-task-list">{exercise.tasks.map((task, index) => <li key={index}><BilingualText value={task} /></li>)}</ol>}
           {exercise.instructionImage && <figure className="exercise-instruction-image"><img src={publicAsset(exercise.instructionImage.src)} alt={bilingualAria(exercise.instructionImage.alt)} /><figcaption><BilingualText value={exercise.instructionImage.caption} /></figcaption></figure>}
         </div>
@@ -1768,6 +1795,7 @@ function Unit1Workshop({
         key={exercise.id}
         exercise={exercise}
         lang={lang}
+        participantId={participantId}
         draft={!exercise.revision || drafts[exercise.id]?.exerciseRevision === exercise.revision ? drafts[exercise.id] : undefined}
         onDraftChange={keepDraft}
         alreadyCompleted={completedExercises.has(exercise.id)}
@@ -1791,8 +1819,9 @@ function Unit1Workshop({
         onPrevious={() => goExercise(exerciseIndex-1)}
         onNext={() => goExercise(exerciseIndex+1)}
         nextLabel={exerciseIndex === lab.exercises.length - 1 ? workshopSummaryTitle : undefined}
-        nextDisabled={currentResult !== true}
+        nextDisabled={currentResult === null}
         resultStatus={currentResult}
+        onReviewLesson={onGoToTrace}
       />
     </div>
   );
@@ -1820,8 +1849,8 @@ function StandardWorkshopView({
   const setPhotoAnswer=useLearningField(persistent.setValue,"photoAnswer");
   const challenge = photoChallenges[session.id];
   const photoChoiceOrder = useMemo(
-    () => shuffledIndices(challenge.choices.length, `session-${session.id}-photo`),
-    [challenge, session.id],
+    () => shuffledIndices(challenge.choices.length, `${participantId}-session-${session.id}-photo`),
+    [challenge, session.id, participantId],
   );
   const photoCorrect = photoAnswer === challenge.answer;
   const total = session.workshops.length + 1;
@@ -1965,8 +1994,9 @@ function StandardWorkshopView({
         onPrevious={() => go(exerciseIndex - 1)}
         onNext={() => go(exerciseIndex + 1)}
         nextLabel={exerciseIndex === total - 1 ? workshopSummaryTitle : undefined}
-        nextDisabled={currentResult !== true}
-        resultStatus={exerciseIndex === 0 ? currentResult : undefined}
+        nextDisabled={exerciseIndex === 0 ? currentResult === null : currentResult !== true}
+        resultStatus={currentResult}
+        onReviewLesson={onGoToTrace}
       />
       </>}
     </div>
@@ -2590,7 +2620,7 @@ function QuizView({
     () => {
       void shuffleRound;
       return session.quiz.map((question, questionIndex) =>
-        shuffledIndices(question.choices.length, `session-${session.id}-quiz-${questionIndex}-round-${shuffleRound}`)
+        shuffledIndices(question.choices.length, `${participantId}-session-${session.id}-quiz-${questionIndex}-round-${shuffleRound}`)
       );
     },
     [session, shuffleRound],
@@ -2600,7 +2630,7 @@ function QuizView({
       void shuffleRound;
       return session.quiz.map((question, questionIndex) =>
         quizHasJustification(question)
-          ? shuffledIndices(question.justifications.length, `session-${session.id}-quiz-${questionIndex}-justification-round-${shuffleRound}`)
+          ? shuffledIndices(question.justifications.length, `${participantId}-session-${session.id}-quiz-${questionIndex}-justification-round-${shuffleRound}`)
           : []
       );
     },
