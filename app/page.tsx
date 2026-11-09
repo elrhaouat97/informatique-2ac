@@ -55,6 +55,7 @@ import {
 } from "./unit1-labs";
 import { Session3Overview, Session3SystemLab } from "./session3-system-lab";
 import { NextLessonFooter } from "./next-lesson";
+import { evaluationPassed } from "../lib/supabase-api";
 import type { SystemLabState } from "./session3-system-model";
 import { Session3GuidedFiles } from "./session3-guided-files";
 import { Session3Trace } from "./session3-trace";
@@ -2910,6 +2911,15 @@ function SessionPage({
 }) {
   const teacherMode = useTeacherCourse();
   const [visitedTabs, setVisitedTabs] = useState<ViewTab[]>([activeTab]);
+  const [evalPassed, setEvalPassed] = useState<boolean>(() => evaluationPassed(participantId, session.id));
+
+  function handleRecordSubmission(submission: SubmissionInput) {
+    onRecordSubmission(submission);
+    const counts = session.id === 2
+      ? submission.activityType === "quiz"
+      : submission.activityType === "quiz" || submission.activityType === "practical_evaluation";
+    if (counts && typeof submission.score === "number" && typeof submission.maxScore === "number" && submission.maxScore > 0 && submission.score * 2 >= submission.maxScore) setEvalPassed(true);
+  }
 
   function showTab(tab: ViewTab) {
     setVisitedTabs((current) => current.includes(tab) ? current : [...current, tab]);
@@ -2922,7 +2932,7 @@ function SessionPage({
   function goToTrace() {
     showTab("trace");
   }
-  if (session.id === 4) return <Session4Lesson student={student} activeTab={activeTab} onTab={onTab} onBack={onBack} onChangeStudent={onChangeStudent} onRecordSubmission={onRecordSubmission} unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} />;
+  if (session.id === 4) return <Session4Lesson student={student} activeTab={activeTab} onTab={onTab} onBack={onBack} onChangeStudent={onChangeStudent} onRecordSubmission={handleRecordSubmission} unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} />;
   return (
     <div className={`session-page page-enter unit-${session.unit}`}>
       <div className="session-student-identity">
@@ -2952,7 +2962,7 @@ function SessionPage({
           session={session}
           lang={lang}
           participantId={participantId}
-          onRecordSubmission={onRecordSubmission}
+          onRecordSubmission={handleRecordSubmission}
           onGoToTrace={goToTrace}
           onGoToEvaluation={() => showTab("quiz")}
         />
@@ -2966,12 +2976,22 @@ function SessionPage({
       {visitedTabs.includes("quiz") && (
         <section className="session-panel" data-panel="quiz" hidden={activeTab !== "quiz"}>
           {session.id === 3
-            ? <Session3Assessment key={`${participantId}-3`} participantId={participantId} onRecordSubmission={onRecordSubmission} />
-            : <QuizView key={`${participantId}-${session.id}`} session={session} lang={lang} participantId={participantId} onRecordSubmission={onRecordSubmission} />}
+            ? <Session3Assessment key={`${participantId}-3`} participantId={participantId} onRecordSubmission={handleRecordSubmission} />
+            : <QuizView key={`${participantId}-${session.id}`} session={session} lang={lang} participantId={participantId} onRecordSubmission={handleRecordSubmission} />}
         </section>
       )}
 
-      <NextLessonFooter currentId={session.id} lang={lang} unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} onBack={onBack} />
+      {teacherMode || evalPassed ? (
+        <NextLessonFooter currentId={session.id} lang={lang} unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} onBack={onBack} />
+      ) : activeTab === "quiz" ? (
+        <div className="next-lesson locked-hint">
+          <span className="next-lesson-icon"><LockKeyhole size={26} /></span>
+          <div className="next-lesson-copy">
+            <strong>{lang === "fr" ? "La séance suivante se débloque ici" : "الحصة الموالية تُفتح من هنا"}</strong>
+            <small>{lang === "fr" ? "Réussis l'évaluation (la moitié des points ou plus) et le bouton apparaîtra." : "انجح في التقويم (النصف من النقاط أو أكثر) وسيظهر الزر."}</small>
+          </div>
+        </div>
+      ) : null}
 
       {saveStatus !== "idle" && (
         <div className={`session-save-status ${saveStatus}`} role="status">

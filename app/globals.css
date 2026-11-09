@@ -4205,3 +4205,12 @@ a:focus-visible {
   .next-lesson { flex-wrap: wrap; }
   .next-lesson-btn { margin-inline-start: 74px; }
 }
+
+/* Locked state of the next-lesson block (évaluation not passed yet) */
+.next-lesson.locked-hint {
+  background: #fbfaf5; color: var(--ink);
+  border: 2px dashed var(--line); box-shadow: none;
+}
+.next-lesson.locked-hint .next-lesson-icon { background: #eef1f3; color: var(--muted); }
+.next-lesson.locked-hint .next-lesson-copy strong { color: var(--navy); font-family: inherit; font-size: 17.5px; font-weight: 800; }
+.next-lesson.locked-hint .next-lesson-copy small { color: var(--ink-soft); }

@@ -1,12 +1,13 @@
 "use client";
 import {useEffect,useMemo,useRef,useState} from "react";
-import {ArrowLeft,ArrowRight,BookOpen,CheckCircle2,ClipboardCheck,CloudOff,FileCheck2,Film,Flag,FlaskConical,Folder,GraduationCap,LoaderCircle,Monitor,Network,Send,Target,Users,X} from "lucide-react";
+import {ArrowLeft,ArrowRight,BookOpen,CheckCircle2,ClipboardCheck,CloudOff,FileCheck2,Film,Flag,FlaskConical,Folder,GraduationCap,LoaderCircle,LockKeyhole,Monitor,Network,Send,Target,Users,X} from "lucide-react";
 import {Session3Text as Text,Session3TranslationScope} from "./session3-translation";
 import {useTeacherCourse} from "../lib/teacher-course-context";
 import {useDurableLessonState,LearningSaveBadge} from "../lib/learning-context";
 import {readSnapshot} from "../lib/learning-storage";
 import {publicAsset} from "../lib/public-assets";
 import type {StudentProfile} from "../lib/supabase-api";
+import {evaluationPassed} from "../lib/supabase-api";
 import {WorkshopSummary,WorkshopSummaryLink,workshopSummaryTitle} from "./workshop-summary";
 import {session4DraftPercent} from "../lib/workshop-progress";
 import {TeacherExerciseNavigator} from "./teacher-exercise-navigator";
@@ -31,6 +32,8 @@ const videoCount=session4Activities.filter(activity=>activity.kind==="video").le
 
 export default function Session4Lesson({student,activeTab,onTab,onBack,onChangeStudent,onRecordSubmission,unlockedSessions,onOpenSession}:Props){
  const teacher=useTeacherCourse();const [visited,setVisited]=useState<Tab[]>([activeTab]);
+ const [evalPassed,setEvalPassed]=useState<boolean>(()=>evaluationPassed(student.id,4));
+ function handleRecord(s:Session4Submission){onRecordSubmission(s);if(s.activityType==="practical_evaluation"&&typeof s.score==="number"&&typeof s.maxScore==="number"&&s.maxScore>0&&s.score*2>=s.maxScore)setEvalPassed(true)}
  const workshopPanel=useRef<HTMLElement>(null);
  useEffect(()=>{if(activeTab!=="workshop")workshopPanel.current?.querySelector("video")?.pause();},[activeTab]);
  function open(tab:Tab){setVisited(v=>v.includes(tab)?v:[...v,tab]);onTab(tab);requestAnimationFrame(()=>document.querySelector('.main-scroll')?.scrollTo({top:0,behavior:"auto"}))}
@@ -39,10 +42,10 @@ export default function Session4Lesson({student,activeTab,onTab,onBack,onChangeS
   {!teacher&&<LearningSaveBadge/>}
   <nav className="s4-tabs" aria-label="Contenu de la séance 4">{tabs.map(({id,icon:Icon,label})=><button type="button" key={id} aria-current={activeTab===id?"page":undefined} className={activeTab===id?"active":""} onClick={()=>open(id)}><Icon size={19}/><span>{label.fr}<small lang="ar" dir="rtl">{label.ar}</small></span></button>)}</nav>
   {visited.includes("mission")&&<section hidden={activeTab!=="mission"} data-s4-panel="mission"><Mission onStart={()=>open("workshop")}/></section>}
-  {visited.includes("workshop")&&<section ref={workshopPanel} hidden={activeTab!=="workshop"} data-s4-panel="workshop"><Workshop participantId={student.id} onRecord={onRecordSubmission} onTrace={()=>open("trace")} onEvaluate={()=>open("quiz")}/></section>}
+  {visited.includes("workshop")&&<section ref={workshopPanel} hidden={activeTab!=="workshop"} data-s4-panel="workshop"><Workshop participantId={student.id} onRecord={handleRecord} onTrace={()=>open("trace")} onEvaluate={()=>open("quiz")}/></section>}
   {visited.includes("trace")&&<section hidden={activeTab!=="trace"} data-s4-panel="trace"><Trace onEvaluate={()=>open("quiz")}/></section>}
-  {visited.includes("quiz")&&<section hidden={activeTab!=="quiz"} data-s4-panel="quiz"><Session4Assessment participantId={student.id} onRecord={onRecordSubmission} legacy={<Assessment participantId={student.id} onRecord={onRecordSubmission}/>}/></section>}
-  <NextLessonFooter currentId={4} lang="fr" unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} onBack={onBack}/>
+  {visited.includes("quiz")&&<section hidden={activeTab!=="quiz"} data-s4-panel="quiz"><Session4Assessment participantId={student.id} onRecord={handleRecord} legacy={<Assessment participantId={student.id} onRecord={handleRecord}/>}/></section>}
+  {teacher||evalPassed?<NextLessonFooter currentId={4} lang="fr" unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} onBack={onBack}/>:activeTab==="quiz"?<div className="next-lesson locked-hint"><span className="next-lesson-icon"><LockKeyhole size={26}/></span><div className="next-lesson-copy"><strong>La séance suivante se débloque ici</strong><small>Réussis l'évaluation (la moitié des points ou plus) et le bouton apparaîtra. · انجح في التقويم (النصف أو أكثر) وسيظهر الزر.</small></div></div>:null}
   <footer className="s4-credit">LAB·2AC · Prof. Mohamed ELRHAOUAT · Collège Al Wahda</footer>
  </div></Session3TranslationScope>;
 }

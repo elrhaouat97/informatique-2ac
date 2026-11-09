@@ -349,6 +349,23 @@ export function submitCourseAttempt(payload: Record<string, unknown>) {
   return Promise.resolve({ saved: true as const });
 }
 
+/** True when the student has passed this session's évaluation (score ≥ half the points). */
+export function evaluationPassed(participantId: string, sessionId: number): boolean {
+  try {
+    const db = loadDB();
+    return db.submissions.some((s) => {
+      if (s.participantId !== participantId || s.sessionId !== sessionId) return false;
+      // Séance 2 also records practical stages (assembly/repair): only its QCM counts here.
+      const counts = sessionId === 2
+        ? s.activityType === "quiz"
+        : s.activityType === "quiz" || s.activityType === "practical_evaluation";
+      return counts && s.score !== null && s.maxScore !== null && s.maxScore > 0 && s.score * 2 >= s.maxScore;
+    });
+  } catch {
+    return false;
+  }
+}
+
 function snapshotOf(c: LocalCheckpoint): LearningSnapshot {
   return {
     version: 1,
