@@ -1640,6 +1640,9 @@ function ExercisePlayer({
           >
             Entrée / إدخال ↵
           </button>
+          <p className="typing-mobile-hint">
+            <BilingualText value={{ fr: "Sur téléphone : écris ton prénom, puis touche le bouton « Entrée » juste à côté.", ar: "في الهاتف: اكتب اسمك ثم اضغط على زر «Entrée» اللي بجانب الخانة." }} />
+          </p>
         </div>
       )}
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Marhey:wght@400;500;600;700&family=Patrick+Hand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Patrick+Hand&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -3927,7 +3927,7 @@ a:focus-visible {
 }
 
 .session-focus .exercise-player .bilingual-copy-ar {
-  font-family: "Marhey", Tahoma, "Segoe UI", Arial, sans-serif;
+  font-family: "Cairo", Tahoma, "Segoe UI", Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.75;
@@ -3963,7 +3963,7 @@ a:focus-visible {
   .conversion-board,
   .sequence-answer
 ) {
-  font-family: "Patrick Hand", "Marhey", Tahoma, cursive;
+  font-family: "Patrick Hand", "Cairo", Tahoma, cursive;
   font-size: 18px;
 }
 
@@ -4168,7 +4168,7 @@ a:focus-visible {
   background: rgba(244, 200, 72, 0.18); color: var(--yellow); transform: rotate(-4deg);
 }
 .games-banner-copy { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.games-banner-copy strong { font-family: "Marhey", cursive; font-size: 23px; line-height: 1.2; }
+.games-banner-copy strong { font-family: "Cairo", cursive; font-size: 23px; line-height: 1.2; }
 .games-banner-copy small { color: #cfe3ee; font-size: 14.5px; line-height: 1.45; }
 .games-banner-cta {
   flex: none; display: inline-flex; align-items: center; gap: 8px;
@@ -4192,7 +4192,7 @@ a:focus-visible {
   background: rgba(244, 200, 72, 0.18); color: var(--yellow);
 }
 .next-lesson-copy { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.next-lesson-copy strong { font-family: "Marhey", cursive; font-size: 21px; line-height: 1.25; }
+.next-lesson-copy strong { font-family: "Cairo", cursive; font-size: 21px; line-height: 1.25; }
 .next-lesson-copy small { color: #cfe3ee; font-size: 14.5px; }
 .next-lesson-btn {
   flex: none; display: inline-flex; align-items: center; gap: 9px; cursor: pointer;
@@ -4233,3 +4233,9 @@ a:focus-visible {
   -webkit-tap-highlight-color: transparent;
 }
 .typing-board .typing-enter:active { transform: translateY(2px); border-bottom-width: 1px; background: var(--cream); }
+
+.typing-board { flex-wrap: wrap; }
+.typing-board .typing-mobile-hint { flex: 1 1 100%; margin: 2px 0 0; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+
+/* Arabic everywhere in the platform renders in Cairo: clear, distinct letterforms for students */
+[lang="ar"] { font-family: "Cairo", Tahoma, "Segoe UI", sans-serif; }

@@ -34,7 +34,7 @@
   box-shadow: 0 16px 34px rgba(16, 38, 63, 0.25); transform: rotate(-4deg);
 }
 .jx-hub-head h1 {
-  font-family: "Marhey", cursive; font-size: clamp(30px, 6vw, 44px); margin: 16px 0 8px; color: var(--navy);
+  font-family: "Cairo", cursive; font-size: clamp(30px, 6vw, 44px); margin: 16px 0 8px; color: var(--navy);
 }
 .jx-hub-head h1 .jx-ar { font-size: 0.62em; color: var(--ink-soft); }
 .jx-hub-head p { margin: 0 auto; max-width: 520px; color: var(--ink-soft); font-size: 17px; }
@@ -54,7 +54,7 @@
   display: grid; place-items: center; width: 62px; height: 62px; border-radius: 18px;
   background: color-mix(in srgb, var(--accent) 16%, white); color: var(--accent); margin-bottom: 6px;
 }
-.jx-pack-title { font-family: "Marhey", cursive; font-size: 22px; color: var(--navy); line-height: 1.25; }
+.jx-pack-title { font-family: "Cairo", cursive; font-size: 22px; color: var(--navy); line-height: 1.25; }
 .jx-pack-title .jx-ar { font-size: 0.72em; color: var(--ink-soft); }
 .jx-pack-sub { color: var(--ink-soft); font-size: 14.5px; }
 .jx-pack-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; color: var(--muted); font-size: 13.5px; font-weight: 600; }
@@ -178,7 +178,7 @@
 .jx-flash-face.front { background: linear-gradient(150deg, #ffffff, #fdf6e0); border: 2.5px dashed #d9c98a; }
 .jx-flash-face.front img { max-height: 46%; max-width: 82%; object-fit: contain; border-radius: 12px; }
 .jx-flash-face.back { background: linear-gradient(150deg, var(--navy), #1d4e6b); color: #fff; transform: rotateY(180deg); }
-.jx-flash-title { font-family: "Marhey", cursive; font-size: clamp(22px, 4.5vw, 30px); color: var(--navy); line-height: 1.3; }
+.jx-flash-title { font-family: "Cairo", cursive; font-size: clamp(22px, 4.5vw, 30px); color: var(--navy); line-height: 1.3; }
 .jx-flash-title .jx-ar { color: var(--ink-soft); }
 .jx-flash-hint { color: var(--muted); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }
 .jx-flash-back-text { font-size: clamp(18px, 3.4vw, 23px); font-weight: 700; line-height: 1.5; }
@@ -271,7 +271,7 @@
 .jx-end-stars { display: flex; justify-content: center; gap: 8px; margin: 14px 0 4px; }
 .jx-end-stars .on { color: #e9b32c; }
 .jx-end-stars .off { color: #d5dbe0; }
-.jx-end-score { font-family: "Marhey", cursive; font-size: 46px; color: var(--navy); margin: 6px 0; }
+.jx-end-score { font-family: "Cairo", cursive; font-size: 46px; color: var(--navy); margin: 6px 0; }
 .jx-end-msg { color: var(--ink-soft); font-size: 18px; margin: 0 0 24px; }
 .jx-end-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
