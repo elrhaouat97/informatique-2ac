@@ -4135,3 +4135,55 @@ a:focus-visible {
   .repair-solution-grid { grid-template-columns: 1fr; }
   .repair-scenario-card { grid-template-columns: 65px 1fr; }
 }
+
+/* Games banner on the student home (links to /jeux) */
+.games-banner {
+  display: flex; align-items: center; gap: 16px; text-decoration: none;
+  margin: 26px 0 6px; padding: 18px 22px; border-radius: 22px; color: #fff;
+  background: linear-gradient(120deg, var(--navy) 0%, #1d4e6b 60%, #14606e 100%);
+  box-shadow: 0 16px 34px rgba(16, 38, 63, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.games-banner:hover { transform: translateY(-2px); box-shadow: 0 22px 40px rgba(16, 38, 63, 0.28); }
+.games-banner-icon {
+  flex: none; display: grid; place-items: center; width: 60px; height: 60px; border-radius: 18px;
+  background: rgba(244, 200, 72, 0.18); color: var(--yellow); transform: rotate(-4deg);
+}
+.games-banner-copy { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.games-banner-copy strong { font-family: "Marhey", cursive; font-size: 23px; line-height: 1.2; }
+.games-banner-copy small { color: #cfe3ee; font-size: 14.5px; line-height: 1.45; }
+.games-banner-cta {
+  flex: none; display: inline-flex; align-items: center; gap: 8px;
+  background: var(--yellow); color: var(--navy-deep); font-weight: 800; font-size: 16px;
+  padding: 11px 20px; border-radius: 999px;
+}
+@media (max-width: 560px) {
+  .games-banner { flex-wrap: wrap; }
+  .games-banner-cta { margin-inline-start: 76px; }
+}
+
+/* End-of-lesson next-séance block (app/next-lesson.tsx) */
+.next-lesson {
+  display: flex; align-items: center; gap: 16px;
+  margin: 30px 0 8px; padding: 18px 22px; border-radius: 22px; color: #fff;
+  background: linear-gradient(120deg, var(--navy) 0%, #1d4e6b 60%, #14606e 100%);
+  box-shadow: 0 16px 34px rgba(16, 38, 63, 0.22);
+}
+.next-lesson-icon {
+  flex: none; display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%;
+  background: rgba(244, 200, 72, 0.18); color: var(--yellow);
+}
+.next-lesson-copy { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.next-lesson-copy strong { font-family: "Marhey", cursive; font-size: 21px; line-height: 1.25; }
+.next-lesson-copy small { color: #cfe3ee; font-size: 14.5px; }
+.next-lesson-btn {
+  flex: none; display: inline-flex; align-items: center; gap: 9px; cursor: pointer;
+  background: var(--yellow); color: var(--navy-deep); border: none; font-weight: 800; font-size: 16.5px;
+  padding: 13px 22px; border-radius: 999px; transition: transform 0.15s ease;
+}
+.next-lesson-btn:hover:not(:disabled) { transform: translateY(-2px); }
+.next-lesson-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+@media (max-width: 560px) {
+  .next-lesson { flex-wrap: wrap; }
+  .next-lesson-btn { margin-inline-start: 74px; }
+}

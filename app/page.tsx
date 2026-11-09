@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { publicAsset } from "../lib/public-assets";
 
 import {
@@ -16,6 +17,7 @@ import {
   FileCheck2,
   FlaskConical,
   FolderKanban,
+  Gamepad2,
   Home,
   ImageIcon,
   Languages,
@@ -52,6 +54,7 @@ import {
   type Unit1Exercise,
 } from "./unit1-labs";
 import { Session3Overview, Session3SystemLab } from "./session3-system-lab";
+import { NextLessonFooter } from "./next-lesson";
 import type { SystemLabState } from "./session3-system-model";
 import { Session3GuidedFiles } from "./session3-guided-files";
 import { Session3Trace } from "./session3-trace";
@@ -684,6 +687,18 @@ function Dashboard({
           ))}
         </div>
       </section>
+
+      <Link href="/jeux" className="games-banner">
+        <span className="games-banner-icon"><Gamepad2 size={30} /></span>
+        <span className="games-banner-copy">
+          <strong>{lang === "fr" ? "Jeux interactifs" : "ألعاب تفاعلية"}</strong>
+          <small>{lang === "fr" ? "Des exercices en jeux : cartes mémoire, QCM, ordre et paires — une question à la fois, avec des images !" : "تمارين على شكل ألعاب: بطاقات ذاكرة، أسئلة متعددة الخيارات، ترتيب وأزواج — سؤال واحد في كل مرة، بالصور!"}</small>
+        </span>
+        <span className="games-banner-cta">
+          {lang === "fr" ? "Jouer" : "العب"}
+          {lang === "fr" ? <ArrowRight size={19} /> : <ArrowLeft size={19} />}
+        </span>
+      </Link>
 
       <section className="sessions-section">
         <div className="section-heading session-heading">
@@ -2870,6 +2885,8 @@ function SessionPage({
   onChangeStudent,
   onRecordSubmission,
   saveStatus,
+  unlockedSessions,
+  onOpenSession,
 }: {
   session: CourseSession;
   lang: Lang;
@@ -2883,6 +2900,8 @@ function SessionPage({
   onChangeStudent: () => void;
   onRecordSubmission: (submission: SubmissionInput) => void;
   saveStatus: SaveStatus;
+  unlockedSessions: Set<number>;
+  onOpenSession: (id: number) => void;
 }) {
   const teacherMode = useTeacherCourse();
   const [visitedTabs, setVisitedTabs] = useState<ViewTab[]>([activeTab]);
@@ -2898,7 +2917,7 @@ function SessionPage({
   function goToTrace() {
     showTab("trace");
   }
-  if (session.id === 4) return <Session4Lesson student={student} activeTab={activeTab} onTab={onTab} onBack={onBack} onChangeStudent={onChangeStudent} onRecordSubmission={onRecordSubmission} />;
+  if (session.id === 4) return <Session4Lesson student={student} activeTab={activeTab} onTab={onTab} onBack={onBack} onChangeStudent={onChangeStudent} onRecordSubmission={onRecordSubmission} unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} />;
   return (
     <div className={`session-page page-enter unit-${session.unit}`}>
       <div className="session-student-identity">
@@ -2946,6 +2965,8 @@ function SessionPage({
             : <QuizView key={`${participantId}-${session.id}`} session={session} lang={lang} participantId={participantId} onRecordSubmission={onRecordSubmission} />}
         </section>
       )}
+
+      <NextLessonFooter currentId={session.id} lang={lang} unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} onBack={onBack} />
 
       {saveStatus !== "idle" && (
         <div className={`session-save-status ${saveStatus}`} role="status">
@@ -3354,6 +3375,8 @@ export default function HomePage() {
               onChangeStudent={changeStudent}
               onRecordSubmission={recordSubmission}
               saveStatus={saveStatus}
+              unlockedSessions={unlockedSessions}
+              onOpenSession={openSession}
             />
           ) : (
             <Dashboard lang={lang} completed={completed} unlockedSessions={unlockedSessions} onOpenSession={openSession} />

@@ -20,15 +20,16 @@ import {Session4Trace} from "./session4-trace";
 import {Session4Assessment} from "./session4-assessment";
 import "./session4.css";
 import "./session4-expo.css";
+import {NextLessonFooter} from "./next-lesson";
 
 type Tab="mission"|"workshop"|"trace"|"quiz";
 export type Session4Submission={sessionId:number;activityType:"workshop"|"practical_evaluation";activityId:string;answer:unknown;isCorrect?:boolean;score?:number;maxScore?:number};
-type Props={student:StudentProfile;activeTab:Tab;onTab:(tab:Tab)=>void;onBack:()=>void;onChangeStudent:()=>void;onRecordSubmission:(submission:Session4Submission)=>void};
+type Props={student:StudentProfile;activeTab:Tab;onTab:(tab:Tab)=>void;onBack:()=>void;onChangeStudent:()=>void;onRecordSubmission:(submission:Session4Submission)=>void;unlockedSessions:Set<number>;onOpenSession:(id:number)=>void};
 const tabs=[{id:"mission",icon:Flag,label:t("Mission","المهمة")},{id:"workshop",icon:FlaskConical,label:t("Atelier","الورشة")},{id:"trace",icon:BookOpen,label:t("Trace écrite","خلاصة الدرس")},{id:"quiz",icon:FileCheck2,label:t("Évaluation","التقويم")}] as const;
 const phases=[{minutes:10,title:t("Comprendre le défi","فهم التحدي")},{minutes:85,title:t("Pratiquer dans l’atelier","التطبيق في الورشة")},{minutes:10,title:t("Retenir l’essentiel","تثبيت الأساسيات")},{minutes:15,title:t("Évaluer mes acquis","تقويم مكتسباتي")}];
 const videoCount=session4Activities.filter(activity=>activity.kind==="video").length;
 
-export default function Session4Lesson({student,activeTab,onTab,onBack,onChangeStudent,onRecordSubmission}:Props){
+export default function Session4Lesson({student,activeTab,onTab,onBack,onChangeStudent,onRecordSubmission,unlockedSessions,onOpenSession}:Props){
  const teacher=useTeacherCourse();const [visited,setVisited]=useState<Tab[]>([activeTab]);
  const workshopPanel=useRef<HTMLElement>(null);
  useEffect(()=>{if(activeTab!=="workshop")workshopPanel.current?.querySelector("video")?.pause();},[activeTab]);
@@ -41,6 +42,7 @@ export default function Session4Lesson({student,activeTab,onTab,onBack,onChangeS
   {visited.includes("workshop")&&<section ref={workshopPanel} hidden={activeTab!=="workshop"} data-s4-panel="workshop"><Workshop participantId={student.id} onRecord={onRecordSubmission} onTrace={()=>open("trace")} onEvaluate={()=>open("quiz")}/></section>}
   {visited.includes("trace")&&<section hidden={activeTab!=="trace"} data-s4-panel="trace"><Trace onEvaluate={()=>open("quiz")}/></section>}
   {visited.includes("quiz")&&<section hidden={activeTab!=="quiz"} data-s4-panel="quiz"><Session4Assessment participantId={student.id} onRecord={onRecordSubmission} legacy={<Assessment participantId={student.id} onRecord={onRecordSubmission}/>}/></section>}
+  <NextLessonFooter currentId={4} lang="fr" unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} onBack={onBack}/>
   <footer className="s4-credit">LAB·2AC · Prof. Mohamed ELRHAOUAT · Collège Al Wahda</footer>
  </div></Session3TranslationScope>;
 }
