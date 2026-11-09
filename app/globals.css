@@ -352,9 +352,11 @@ a:focus-visible {
 .sidebar:not(.open) .brand-row { justify-content: center; padding-inline: 0; }
 .sidebar:not(.open) .brand > span:last-child,
 .sidebar:not(.open) .home-link > span,
+.sidebar:not(.open) .games-link > span,
 .sidebar:not(.open) .sidebar-scroll,
 .sidebar:not(.open) .progress-panel { display: none; }
 .sidebar:not(.open) .home-link { width: 46px; justify-content: center; margin-inline: auto; padding-inline: 0; }
+.sidebar:not(.open) .games-link { width: 46px; justify-content: center; margin-inline: auto; padding-inline: 0; }
 
 .brand-row {
   display: flex;
@@ -439,6 +441,22 @@ a:focus-visible {
   background: rgba(255, 255, 255, 0.08);
   color: #fff;
 }
+
+.games-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 14px 10px;
+  padding: 11px 13px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--yellow);
+  color: var(--navy-deep);
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.games-link:hover { background: #ffd95e; transform: translateY(-1px); }
 
 .sidebar-scroll {
   min-height: 0;

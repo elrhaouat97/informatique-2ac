@@ -430,6 +430,11 @@ function Sidebar({
           <span>{labels.overview}</span>
         </button>
 
+        <Link href="/jeux" className="games-link">
+          <Gamepad2 size={19} />
+          <span>{lang === "fr" ? "Jeux interactifs" : "ألعاب تفاعلية"}</span>
+        </Link>
+
         <div className="sidebar-scroll">
           <p className="sidebar-label">{labels.program}</p>
           {units.map((unit) => {
