@@ -4239,3 +4239,66 @@ a:focus-visible {
 
 /* Arabic everywhere in the platform renders in Cairo: clear, distinct letterforms for students */
 [lang="ar"] { font-family: "Cairo", Tahoma, "Segoe UI", sans-serif; }
+
+/* ——— Guided entry (no group, Arabic-first, big tap targets) ——— */
+.entry-label { display: block; font-size: 18px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+.entry-label small { color: var(--muted); font-size: 13px; font-weight: 600; }
+.class-chips { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; }
+.class-chips .chip {
+  min-height: 54px; border: 2px solid var(--line); border-radius: 13px; background: #fff;
+  font-size: 20px; font-weight: 800; color: var(--navy); cursor: pointer;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.class-chips .chip:hover { transform: translateY(-2px); border-color: var(--cyan); }
+.class-chips .chip.active { background: var(--navy); border-color: var(--navy); color: #fff; box-shadow: 0 8px 18px rgba(10,34,66,.25); }
+.mode-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.mode-card {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 16px 10px 13px; border: 2px solid var(--line); border-radius: 15px; background: #fff;
+  color: var(--navy); cursor: pointer; transition: transform .12s ease, border-color .12s ease, background .12s ease;
+}
+.mode-card:hover { transform: translateY(-2px); }
+.mode-card strong { font-size: 18px; }
+.mode-card small { color: var(--muted); font-size: 12px; font-weight: 600; }
+.mode-card.active { border-color: var(--yellow); background: #fff7dd; box-shadow: 0 8px 18px rgba(210,160,20,.18); }
+
+/* ——— Guided lesson path: locked stages, trace guide, big stage CTA ——— */
+.tab-nav button.locked, .s4-tabs button.locked { opacity: .42; cursor: not-allowed; }
+.tab-nav button.locked:hover, .s4-tabs button.locked:hover { transform: none; }
+.trace-guide {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 16px; margin-bottom: 16px;
+  border: 1.5px solid #bfe3f2; border-radius: 13px; background: #eef8fd; color: var(--navy);
+}
+.trace-guide p { margin: 0; display: grid; gap: 2px; }
+.trace-guide p strong { font-size: 16.5px; line-height: 1.6; }
+.trace-guide p small { color: var(--ink-soft); font-size: 13px; }
+.stage-cta {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  width: 100%; margin-top: 20px; padding: 16px 20px;
+  border: 0; border-radius: 14px; background: var(--yellow); color: var(--navy-deep);
+  cursor: pointer; box-shadow: 0 10px 22px rgba(210,160,20,.28);
+  transition: transform .15s ease;
+}
+.stage-cta:hover { transform: translateY(-2px); }
+.stage-cta span { font-size: 20px; font-weight: 800; }
+.stage-cta small { font-size: 13px; font-weight: 700; opacity: .75; }
+
+/* ——— Pass celebration ——— */
+.pass-celebration {
+  display: flex; align-items: center; gap: 14px;
+  margin-top: 26px; padding: 16px 20px;
+  border-radius: 15px; color: #14532d;
+  background: linear-gradient(120deg, #dcfce7, #fef9c3);
+  border: 1.5px solid #86efac;
+  animation: celebration-pop .45s ease;
+}
+.pass-celebration strong { display: block; font-size: 20px; line-height: 1.5; }
+.pass-celebration small { color: #3f6212; font-weight: 600; }
+.pass-celebration-star { font-size: 28px; }
+.pass-celebration + .next-lesson { margin-top: 12px; }
+@keyframes celebration-pop { 0% { transform: scale(.96); opacity: 0; } 60% { transform: scale(1.015); } 100% { transform: scale(1); opacity: 1; } }
+
+/* Hero guided-start emphasis */
+.hero-start { animation: hero-pulse 2.6s ease-in-out infinite; }
+@keyframes hero-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(250,204,21,.45); } 50% { box-shadow: 0 0 0 9px rgba(250,204,21,0); } }

@@ -521,7 +521,7 @@ function StudentIdentityBadge({
           <small className="student-mode-badge">{organizationLabel}</small>
           <strong>{studentLabel}</strong>
         </span>
-        <small className="student-chip-meta">{student.className} · G{student.groupName}</small>
+        <small className="student-chip-meta">{student.className}</small>
       </span>
     </button>
   );
@@ -610,18 +610,22 @@ function Dashboard({
   completed,
   unlockedSessions,
   onOpenSession,
+  participantId,
 }: {
   lang: Lang;
   completed: Set<number>;
   unlockedSessions: Set<number>;
   onOpenSession: (id: number) => void;
+  participantId: string;
 }) {
   const labels = ui[lang];
   const [filter, setFilter] = useState<number | "all">("all");
   const visibleSessions = filter === "all" ? sessions : sessions.filter((session) => session.unit === filter);
-  const nextSession = sessions.find((session) => unlockedSessions.has(session.id) && !completed.has(session.id))
+  const nextSession = sessions.find((session) => unlockedSessions.has(session.id) && !evaluationPassed(participantId, session.id))
+    ?? sessions.find((session) => unlockedSessions.has(session.id) && !completed.has(session.id))
     ?? sessions.find((session) => unlockedSessions.has(session.id))
     ?? null;
+  const journeyStarted = sessions.some((session) => evaluationPassed(participantId, session.id)) || completed.size > 0;
 
   return (
     <div className="dashboard page-enter">
@@ -644,8 +648,10 @@ function Dashboard({
               : "حتى لو لم تستعمل الحاسوب من قبل: حركة واحدة معروضة ثم تطبقها — دائما مع زميلك."}
           </p>
           {nextSession ? (
-            <button className="primary-button" onClick={() => onOpenSession(nextSession.id)}>
-              {lang === "fr" ? `Entrer dans la séance ${nextSession.id}` : `الدخول إلى الحصة ${nextSession.id}`}
+            <button className="primary-button hero-start" onClick={() => onOpenSession(nextSession.id)}>
+              {lang === "fr"
+                ? (journeyStarted ? `Continuer : séance ${nextSession.id}` : `Commencer : séance ${nextSession.id}`)
+                : (journeyStarted ? `تابع: الحصة ${nextSession.id}` : `ابدأ: الحصة ${nextSession.id}`)}
               {lang === "fr" ? <ArrowRight size={18} /> : <ArrowLeft size={18} />}
             </button>
           ) : (
@@ -2939,6 +2945,10 @@ function SessionPage({
     });
   }
 
+  const stageOrder: ViewTab[] = ["mission", "workshop", "trace", "quiz"];
+  const maxVisitedIdx = Math.max(...visitedTabs.map((t) => stageOrder.indexOf(t)));
+  const tabLocked = (t: ViewTab) => !teacherMode && stageOrder.indexOf(t) > maxVisitedIdx + 1;
+
   function goToTrace() {
     showTab("trace");
   }
@@ -2953,9 +2963,10 @@ function SessionPage({
       {!teacherMode && <LearningSaveBadge/>}
       <nav className="tab-nav" aria-label="Contenu de la séance">
         {tabItems.map(({ id, icon: Icon }) => (
-          <button className={activeTab === id ? "active" : ""} aria-current={activeTab === id ? "page" : undefined} onClick={() => showTab(id)} key={id}>
+          <button className={`${activeTab === id ? "active" : ""} ${tabLocked(id) ? "locked" : ""}`} aria-current={activeTab === id ? "page" : undefined} onClick={() => showTab(id)} key={id} disabled={tabLocked(id)}>
             <Icon size={17} />
             {session.id === 3 ? <BilingualText value={{ fr: ui.fr[id], ar: ui.ar[id] }} /> : <span>{ui.fr[id]}<small lang="ar" dir="rtl">{ui.ar[id]}</small></span>}
+            {tabLocked(id) && <LockKeyhole size={13} aria-hidden="true" />}
           </button>
         ))}
       </nav>
@@ -2974,13 +2985,22 @@ function SessionPage({
           participantId={participantId}
           onRecordSubmission={handleRecordSubmission}
           onGoToTrace={goToTrace}
-          onGoToEvaluation={() => showTab("quiz")}
+          onGoToEvaluation={() => showTab(visitedTabs.includes("trace") ? "quiz" : "trace")}
         />
         </section>
       )}
       {visitedTabs.includes("trace") && (
         <section className="session-panel" data-panel="trace" hidden={activeTab !== "trace"}>
+          <div className="trace-guide">
+            <BookOpen size={20} aria-hidden="true" />
+            <p><strong lang="ar" dir="rtl">اقرأ خلاصة الدرس جيدا قبل المرور إلى التقويم، لتختبر مهارتك بنفسك.</strong><small>{lang === "fr" ? "Lis bien la trace écrite avant de passer à l'évaluation." : "Lis bien la trace écrite avant l'évaluation."}</small></p>
+          </div>
           <TraceView session={session} lang={lang} />
+          <button type="button" className="stage-cta" onClick={() => showTab("quiz")}>
+            <span lang="ar" dir="rtl">قرأت الدرس — هيّا إلى التقويم</span>
+            <small>{lang === "fr" ? "J'ai lu le cours, à moi l'évaluation" : "J'ai lu le cours — à l'évaluation"}</small>
+            {lang === "fr" ? <ArrowRight size={20} /> : <ArrowLeft size={20} />}
+          </button>
         </section>
       )}
       {visitedTabs.includes("quiz") && (
@@ -2992,7 +3012,19 @@ function SessionPage({
       )}
 
       {teacherMode || evalPassed ? (
-        <NextLessonFooter currentId={session.id} lang={lang} unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} onBack={onBack} />
+        <>
+          {!teacherMode && (
+            <div className="pass-celebration" role="status">
+              <span className="pass-celebration-star" aria-hidden="true">🎉</span>
+              <div>
+                <strong lang="ar" dir="rtl">أحسنت! أنهيت هذه الحصة بنجاح</strong>
+                <small>{lang === "fr" ? "Bravo, séance réussie ! La suivante t'attend." : "Bravo ! Séance réussie, la suivante t'attend."}</small>
+              </div>
+              <span className="pass-celebration-star" aria-hidden="true">⭐</span>
+            </div>
+          )}
+          <NextLessonFooter currentId={session.id} lang={lang} unlockedSessions={unlockedSessions} onOpenSession={onOpenSession} onBack={onBack} />
+        </>
       ) : activeTab === "quiz" ? (
         <div className="next-lesson locked-hint">
           <span className="next-lesson-icon"><LockKeyhole size={26} /></span>
@@ -3414,7 +3446,7 @@ export default function HomePage() {
               onOpenSession={openSession}
             />
           ) : (
-            <Dashboard lang={lang} completed={completed} unlockedSessions={unlockedSessions} onOpenSession={openSession} />
+            <Dashboard lang={lang} completed={completed} unlockedSessions={unlockedSessions} onOpenSession={openSession} participantId={studentProfile.id} />
           )}
           {!selected && <div className="site-credit">
             <span>LAB·2AC</span>

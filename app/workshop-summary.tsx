@@ -142,7 +142,7 @@ export function WorkshopSummary({ sessionId, participantId, state, onBack, onRes
     <footer className="workshop-summary-actions">
       <button type="button" onClick={onBack}><ArrowLeft size={17} aria-hidden="true" /><Text value={t("Retour à l’atelier", "العودة إلى الورشة")} /></button>
       <button type="button" onClick={onTrace}><BookOpen size={17} aria-hidden="true" /><Text value={t("Lire la trace écrite", "قراءة خلاصة الدرس")} /></button>
-      <button type="button" className="workshop-evaluation-link" onClick={onEvaluate}><Text value={t("Passer à l’évaluation", "الانتقال إلى التقويم")} /><ArrowRight size={17} aria-hidden="true" /></button>
+      <button type="button" className="workshop-evaluation-link" onClick={onEvaluate}><Text value={t("Continuer", "المتابعة")} /><ArrowRight size={17} aria-hidden="true" /></button>
     </footer>
   </section>;
 }
