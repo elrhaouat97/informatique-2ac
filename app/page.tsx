@@ -1626,13 +1626,20 @@ function ExercisePlayer({
           <input
             id={`typing-${exercise.id}`}
             value={textValue}
+            enterKeyHint="enter"
             onChange={(event) => { setTextValue(event.target.value); setResult(null); }}
             onKeyDown={(event) => {
-              if (event.key === "Enter") recordResult(textValue.trim().length >= 2, { mode: "typing", text: textValue.trim() });
+              if (event.key === "Enter" || event.nativeEvent.keyCode === 13) recordResult(textValue.trim().length >= 2, { mode: "typing", text: textValue.trim() });
             }}
             placeholder="Écris ici… / اكتب هنا…"
           />
-          <kbd>Entrée / إدخال ↵</kbd>
+          <button
+            type="button"
+            className="typing-enter"
+            onClick={() => recordResult(textValue.trim().length >= 2, { mode: "typing", text: textValue.trim() })}
+          >
+            Entrée / إدخال ↵
+          </button>
         </div>
       )}
 
