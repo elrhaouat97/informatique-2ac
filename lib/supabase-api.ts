@@ -245,7 +245,7 @@ export async function registerParticipant(payload: Omit<StudentProfile, "id">) {
   const cls = text(payload.className);
   const group = text(payload.groupName);
   const pair = payload.isPair === true;
-  if (!/^2\/[1-9]$/.test(cls) || !["1", "2"].includes(group)) fail("Choisis ta classe et ton groupe.");
+  if (!/^(2\/[1-5]|3\/[1-4])$/.test(cls) || !["1", "2"].includes(group)) fail("Choisis ta classe et ton groupe.");
   const one = resolveMember(db, payload.studentOneId, payload.studentOne, cls, group);
   const two = pair ? resolveMember(db, payload.studentTwoId, payload.studentTwo, cls, group) : null;
   if (two && two.id === one.id) fail("Un binôme doit contenir deux élèves différents.");
@@ -276,7 +276,7 @@ export function rosterSuggestions(className: string, groupName: string) {
   const db = loadDB();
   const cls = text(className);
   const group = text(groupName);
-  if (!/^2\/[1-9]$/.test(cls) || !["1", "2"].includes(group)) fail("Classe ou groupe invalide.");
+  if (!/^(2\/[1-5]|3\/[1-4])$/.test(cls) || !["1", "2"].includes(group)) fail("Classe ou groupe invalide.");
   const students = db.roster
     .filter((r) => r.active && r.className === cls && (r.groupName === group || r.groupName === null))
     .filter((r) => isSuggestibleStudentName(r.fullName))
@@ -561,7 +561,7 @@ function readFilters(value: ProfessorFilters) {
   const requestedGroup = text(raw.groupName);
   const requestedSession = Number(raw.sessionId);
   return {
-    className: /^2\/[1-9]$/.test(requestedClass) ? requestedClass : "",
+    className: /^(2\/[1-5]|3\/[1-4])$/.test(requestedClass) ? requestedClass : "",
     groupName: requestedGroup === "1" || requestedGroup === "2" ? requestedGroup : "",
     sessionId: Number.isInteger(requestedSession) && requestedSession >= 1 && requestedSession <= 15 ? requestedSession : null,
     search: text(raw.search).toLocaleLowerCase("fr"),
@@ -775,7 +775,7 @@ function validateRosterRow(row: Partial<RosterStudent> & { fullName: string; cla
   if (
     fullName.length < 2 ||
     fullName.length > 100 ||
-    !/^2\/[1-9]$/.test(cls) ||
+    !/^(2\/[1-5]|3\/[1-4])$/.test(cls) ||
     (group !== null && !["1", "2"].includes(group)) ||
     (massar !== null && !/^[A-Z0-9]{5,20}$/.test(massar))
   ) {
