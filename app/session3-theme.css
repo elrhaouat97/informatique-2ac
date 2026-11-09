@@ -1,0 +1,162 @@
+@font-face { font-family: "Session3 Manrope"; src: url("../public/session3/fonts/manrope.woff") format("woff"); font-style: normal; font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Session3 Arabic"; src: url("../public/session3/fonts/arabic.woff") format("woff"); font-style: normal; font-weight: 400; font-display: swap; }
+
+/* The reference exam's visual language is confined to the third session. */
+.app-shell.session3-theme {
+  --ink: #183c34; --ink-soft: #52685e; --navy: #163e34; --navy-deep: #11342b;
+  --paper: #f5f5f0; --cream: #fbfcf8; --line: #e0e6dd; --muted: #6a7971;
+  --u1: #688a51; --unit: #688a51; --yellow: #d6ed9b; --danger: #b43634; --success: #297352;
+  --shadow: 0 16px 55px #183c3409;
+  background: var(--paper); color: var(--ink); font-family: "Session3 Manrope", system-ui, sans-serif;
+  font-synthesis: none;
+}
+.session3-theme :is(button, input, select, textarea) { font-family: inherit; }
+.session3-theme :is(button, a, input, select, textarea, [tabindex]):focus-visible { outline: 3px solid #8ba957; outline-offset: 4px; }
+.session3-theme ::selection { background: #d6ed9b; color: #183c34; }
+.session3-theme.session-focus .session-page { width: min(1180px, calc(100% - 64px)); padding-top: 23px; padding-bottom: 45px; }
+.session3-theme .main-scroll { scrollbar-color: #b5c3ad var(--paper); }
+.session3-theme .session-student-identity { justify-content: space-between; gap: 20px; margin-bottom: 18px; min-height: 48px; }
+.session3-theme .s3-brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
+.session3-theme .s3-brand > span { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 12px; background: #163e34; color: #d6ed9b; }
+.session3-theme .s3-brand strong { display: block; font-size: 18px; font-weight: 800; letter-spacing: -.7px; }
+.session3-theme .s3-brand small { display: block; color: var(--muted); font-size: 9px; font-weight: 750; letter-spacing: 1.3px; margin-top: 2px; }
+.session3-theme .session-student-identity .student-chip { border-color: var(--line); border-radius: 13px; box-shadow: none; height: 44px; }
+.session3-theme .student-chip-icon { color: #245b4b; background: #edf2e8; }
+.session3-theme .student-mode-badge { color: #245b4b; background: #edf2e8; }
+.session3-theme .s3-translation-help { display: flex; align-items: flex-start; gap: 9px; margin: 0 0 17px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.session3-theme .s3-translation-help > svg { flex: 0 0 auto; margin-top: 2px; color: #245b4b; }
+.session3-theme .tab-nav { padding: 6px; border-radius: 16px; background: #fff; border-color: var(--line); box-shadow: var(--shadow); }
+.session3-theme.session-focus .tab-nav button { min-height: 48px; font-size: 14px; gap: 9px; font-weight: 750; border-radius: 11px; }
+.session3-theme .tab-nav button.active { background: #163e34; color: #fff; box-shadow: 0 5px 15px #173c3415; }
+.session3-theme .tab-nav button:hover:not(.active) { background: #edf2e8; color: #183c34; }
+.session3-theme .tab-nav .s3-phrase { text-align: center; }
+.session3-theme .tab-content { margin-top: 24px; }
+.session3-theme .session-hero { min-height: 210px; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 26px; padding: 32px; border-radius: 25px; background: #163e34; box-shadow: none; }
+.session3-theme .session-hero::after { display: none; }
+.session3-theme .session-hero-pattern { opacity: .05; }
+.session3-theme .session-hero-number { padding: 20px 10px; border-radius: 16px; }
+.session3-theme .session-hero-number span { color: #d0dfcf; font-size: 10px; }
+.session3-theme .session-hero-number strong { font-family: inherit; font-size: 55px; font-weight: 650; color: #d6ed9b; letter-spacing: -3px; }
+.session3-theme .session-meta { flex-wrap: wrap; color: #d1dfd0; font-size: 11px; line-height: 1.6; }
+.session3-theme .session-meta strong { color: #d6ed9b; font-size: 10px; }
+.session3-theme .session-hero-copy h1 { font-size: clamp(28px, 3.4vw, 44px); font-weight: 650; line-height: 1.2; letter-spacing: -1.7px; margin: 17px 0 13px; }
+.session3-theme .session-hero-copy p { color: #e0e9dc; font-size: 15px; line-height: 1.85; }
+.session3-theme .complete-button { border-radius: 11px; font-size: 11px; color: #e0e9dc; white-space: normal; text-align: start; }
+.session3-theme :is(.content-card, .exercise-player, .quiz-card, .quiz-intro, .s3-os-notebook) { border: 1px solid var(--line); border-radius: 22px; background: #fff; box-shadow: var(--shadow); }
+.session3-theme .s3-overview { gap: 20px; margin-top: 22px; }
+.session3-theme .s3-intro { padding: 27px 30px; border-radius: 22px; background: #edf2e8; color: #183c34; border: 1px solid #dfe7d7; }
+.session3-theme .card-kicker { color: #647954; font-size: 11px; font-weight: 800; letter-spacing: 1.2px; }
+.session3-theme .s3-intro h2 { font-size: 27px; font-weight: 650; letter-spacing: -.8px; line-height: 1.4; margin: 13px 0; }
+.session3-theme .s3-intro p { font-size: 17px; line-height: 1.9; margin: 0; }
+.session3-theme .s3-competence { margin-top: 19px; padding-top: 17px; border-color: #d1ddc8; font-size: 15px; line-height: 1.8; }
+.session3-theme :is(.s3-situation, .s3-schedule) { padding: 28px 30px; }
+.session3-theme :is(.s3-situation, .s3-schedule) h2 { font-size: 25px; font-weight: 650; letter-spacing: -.7px; line-height: 1.4; }
+.session3-theme .s3-situation p { font-size: 17px; line-height: 1.95; color: #52685e; }
+.session3-theme .s3-situation > strong { font-size: 18px; font-weight: 750; color: #245b4b; line-height: 1.8; }
+.session3-theme .s3-schedule li { border-color: var(--line); font-size: 16px; line-height: 1.7; padding: 15px 0; }
+.session3-theme .s3-schedule time { font-family: inherit; font-size: 12px; color: var(--muted); }
+.session3-theme .s3-schedule li > strong { color: #245b4b; font-size: 13px; }
+.session3-theme .s3-native-note { padding: 19px 22px; background: #edf2e8; border: 1px solid #d8e3ce; border-radius: 16px; font: inherit; font-size: 16px; line-height: 1.85; color: #245b4b; }
+.session3-theme .objective-list p { font-size: 16px; line-height: 1.9; }
+.session3-theme .objective-list > li > span { background: #edf2e8; color: #245b4b; }
+.session3-theme .mission-support-grid { gap: 20px; margin-top: 20px; }
+.session3-theme .role-row > span { background: #edf2e8; color: #245b4b; }
+.session3-theme .role-row small { color: var(--muted); }
+.session3-theme .mission-start-button { padding: 17px 23px; border-radius: 13px; background: #163e34; color: #fff; font-size: 15px; box-shadow: none; }
+.session3-theme .mission-start-button:hover { background: #245b4b; }
+.session3-theme .s3-phase-banner { padding: 17px 21px; border: 1px solid #dce5d4; border-radius: 15px; background: #edf2e8; color: #245b4b; font: 750 15px/1.8 "Session3 Manrope", system-ui, sans-serif; }
+.session3-theme .exercise-counter { color: var(--muted); font-family: inherit; font-size: 11px; font-weight: 800; letter-spacing: 1.4px; }
+.session3-theme.session-focus .exercise-player { padding: 29px; border: 1px solid var(--line); border-radius: 22px; }
+.session3-theme .exercise-meta > strong { background: #edf2e8; color: #245b4b; border-color: #d8e3ce; font-family: inherit; font-size: 10px; letter-spacing: .7px; }
+.session3-theme .exercise-meta { color: var(--muted); }
+.session3-theme.session-focus .exercise-copy h3 { font-size: 25px; line-height: 1.5; font-weight: 650; letter-spacing: -.7px; margin: 17px 0 13px; }
+.session3-theme .exercise-copy > .exercise-prompt { font-size: 18px; line-height: 1.9; color: #52685e; }
+.session3-theme .exercise-image { border-radius: 16px; border-color: var(--line); background: #f8faf5; }
+.session3-theme .exercise-image figcaption { color: var(--muted); }
+.session3-theme .s3-text-document { border-color: var(--line); border-radius: 14px; color: var(--ink); font: 18px/1.9 "Session3 Manrope", system-ui, sans-serif; }
+.session3-theme :is(.match-row, .drag-zone, .conversion-board, .typing-board) { border-color: var(--line); border-radius: 15px; background: #fafbf7; }
+.session3-theme .match-item > strong { font-size: 17px; font-weight: 750; color: #245b4b; }
+.session3-theme :is(.exercise-options button, .match-answers button, .sequence-bank button, .drag-card) { border-color: #dce4d5; border-radius: 13px; background: #fafbf7; font-family: inherit; }
+.session3-theme.session-focus .exercise-options button { min-height: 66px; font-size: 18px; line-height: 1.7; font-weight: 650; }
+.session3-theme :is(.exercise-options button, .match-answers button, .sequence-bank button):hover:not(:disabled) { border-color: #9cb48c; background: #f1f5e9; }
+.session3-theme :is(.exercise-options button, .match-answers button).selected { border-color: #688a51; background: #edf5df; color: #183c34; box-shadow: 0 0 0 2px #d6ed9b66; }
+.session3-theme .match-answers button { font-size: 16px; line-height: 1.65; }
+.session3-theme .option-marker { font-family: inherit; border-radius: 8px; }
+.session3-theme .exercise-actions .check-exercise { padding: 13px 21px; min-height: 48px; border-radius: 12px; background: #163e34; color: white; font-size: 14px; }
+.session3-theme :is(.exercise-result, .exercise-hint) { border-radius: 14px; font-size: 16px; line-height: 1.9; }
+.session3-theme .exercise-result.success { border-color: #bfd4ae; background: #f0f6e8; }
+.session3-theme .simple-exercise-navigation { border-color: var(--line); border-radius: 18px; background: #fff; padding: 17px; gap: 16px; }
+.session3-theme .simple-exercise-navigation > button { border-radius: 11px; border-color: #dbe5d3; background: #edf2e8; color: #245b4b; font-size: 13px; }
+.session3-theme .simple-exercise-navigation > .exercise-next-button { background: #163e34; color: white; }
+.session3-theme .exercise-progress-track { background: #edf2e8; }
+.session3-theme .exercise-progress-track > span { background: #688a51; }
+.session3-theme .exercise-current-status.success { color: #245b4b; background: #edf5df; }
+.session3-theme .s3-system-lab { font: 17px/1.7 "Session3 Manrope", system-ui, sans-serif; }
+.session3-theme :is(.s3-task-list li, .s3-guided-goal, .s3-current-mission) { border-color: #dce5d4; background: #f7faf2; border-radius: 14px; font-size: 17px; line-height: 1.8; }
+.session3-theme .s3-current-mission > strong { background: #d6ed9b; color: #245b4b; }
+.session3-theme :is(.s3-guided-workspace, .s3-explorer) { border-color: var(--line); border-radius: 16px; }
+.session3-theme .s3-file-toolbar { border-color: var(--line); background: #f5f7f0; }
+.session3-theme .s3-file-toolbar button { border-color: #dbe5d3; border-radius: 10px; color: #245b4b; }
+.session3-theme .s3-guided-files .next-action { border-color: #91a76a !important; background: #f2f7e8 !important; box-shadow: 0 0 0 3px #d6ed9b55; }
+.session3-theme .s3-lab-validation > button { background: #163e34; border-radius: 12px; }
+.session3-theme :is(.s3-search input, .s3-name-form input, .text-answer input, .conversion-board input) { border-color: #cdd9c3; border-radius: 11px; font-family: inherit; }
+.session3-theme .notebook.s3-os-notebook { max-width: 920px; padding: 32px 34px; font-family: inherit; background: #fff; }
+.session3-theme .s3-os-notebook .notebook-margin { display: none; }
+.session3-theme .s3-os-heading small { color: var(--muted); font-family: inherit; font-size: 11px; letter-spacing: 1px; }
+.session3-theme .s3-os-heading h2 { color: #183c34; font-family: inherit; font-size: 30px; font-weight: 650; letter-spacing: -1px; margin: 12px 0 24px; }
+.session3-theme .s3-os-section { padding: 21px 23px; margin-top: 15px; border: 1px solid var(--line); border-radius: 16px; }
+.session3-theme .s3-os-section h3 { color: #245b4b; font-family: inherit; font-size: 19px; font-weight: 750; margin-bottom: 10px; }
+.session3-theme .s3-os-section :is(p, ul, ol) { color: #52685e; font-family: inherit; font-size: 17px; line-height: 1.95; }
+.session3-theme .s3-os-examples > li { padding: 10px 14px; border-color: #dce5d4; border-radius: 10px; color: #245b4b; background: #f5f8ef; font-family: inherit; }
+.session3-theme .s3-os-chain > li > div { padding: 11px 15px; border-color: #d8e3ce; border-radius: 10px; background: #fafbf7; color: #245b4b; }
+.session3-theme .s3-os-chain > li:nth-child(3) > div { background: #edf5df; border-color: #b7cb9f; }
+.session3-theme .s3-os-chain svg { color: #688a51; margin: 5px 0; }
+.session3-theme :is(.quiz-card, .quiz-intro) { padding: 28px; }
+.session3-theme .quiz-question { font-family: inherit; }
+.session3-theme .quiz-options button { font-family: inherit; border-color: var(--line); border-radius: 13px; background: #fafbf7; }
+.session3-theme .quiz-options button.selected { background: #edf5df; border-color: #688a51; }
+.session3-theme .s3-quiz-visual { background: #f7faf2; border-color: var(--line); border-radius: 16px; }
+.session3-theme .session-sidebar-trigger { border-color: var(--line); color: #245b4b; border-radius: 11px; background: #fff; }
+.session3-theme .s3-phrase { display: inline; color: inherit; font: inherit; letter-spacing: inherit; line-height: inherit; white-space: normal; }
+.session3-theme .s3-phrase[data-s3-ar] { cursor: help; text-underline-offset: 5px; }
+.session3-theme .s3-phrase[data-s3-ar]:hover { text-decoration: underline dotted; text-decoration-thickness: 1px; }
+.s3-translation-tooltip { position: fixed; z-index: 10000; pointer-events: none; max-width: min(340px, calc(100vw - 22px)); max-height: calc(100dvh - 22px); overflow: hidden; padding: 10px 16px; border: 1px solid #ffffff25; border-radius: 11px; background: #153e34; color: #fff; box-shadow: 0 7px 25px #0b2f3628; font: 400 19px/1.8 "Session3 Arabic", Arial, sans-serif; text-align: center; overflow-wrap: anywhere; }
+
+@media (max-width: 860px) {
+  .session3-theme.session-focus .session-page { width: calc(100% - 36px); }
+  .session3-theme .session-hero { grid-template-columns: 80px minmax(0, 1fr); padding: 25px; gap: 20px; }
+  .session3-theme .complete-button { grid-column: 2; justify-self: start; padding: 10px 12px; }
+  .session3-theme .session-hero-number strong { font-size: 45px; }
+}
+@media (max-width: 620px) {
+  .session3-theme.session-focus .session-page { width: calc(100% - 28px); padding-top: 17px; }
+  .session3-theme .session-student-identity { align-items: flex-start; gap: 10px; margin-bottom: 13px; }
+  .session3-theme .s3-brand strong { font-size: 16px; }
+  .session3-theme .s3-brand small { font-size: 8px; letter-spacing: .8px; }
+  .session3-theme .s3-brand > span { width: 33px; height: 33px; border-radius: 10px; }
+  .session3-theme .s3-brand { gap: 8px; }
+  .session3-theme .session-student-identity .student-chip { max-width: 175px; height: 40px; }
+  .session3-theme .s3-translation-help { font-size: 11px; margin-bottom: 12px; }
+  .session3-theme.session-focus .tab-nav button { font-size: 11px; min-height: 44px; padding-inline: 4px; }
+  .session3-theme .session-hero { grid-template-columns: 1fr; padding: 25px 22px; border-radius: 20px; }
+  .session3-theme .session-hero-number { display: none; }
+  .session3-theme .session-hero-copy h1 { font-size: 32px; letter-spacing: -1.2px; }
+  .session3-theme .session-hero-copy p { font-size: 14px; }
+  .session3-theme .complete-button { grid-column: 1; }
+  .session3-theme :is(.s3-intro, .s3-situation, .s3-schedule) { padding: 23px 20px; border-radius: 18px; }
+  .session3-theme .s3-intro h2 { font-size: 24px; }
+  .session3-theme :is(.s3-intro p, .s3-situation p) { font-size: 16px; }
+  .session3-theme .s3-schedule li { font-size: 14px; grid-template-columns: 64px 1fr; }
+  .session3-theme.session-focus .exercise-player { padding: 22px 18px; border-radius: 18px; }
+  .session3-theme.session-focus .exercise-copy h3 { font-size: 23px; }
+  .session3-theme .exercise-copy > .exercise-prompt { font-size: 17px; }
+  .session3-theme.session-focus .exercise-options button { font-size: 17px; }
+  .session3-theme .simple-exercise-navigation { gap: 10px; padding: 14px; }
+  .session3-theme .simple-exercise-navigation > button { font-size: 11px; padding: 11px 9px; }
+  .session3-theme .notebook.s3-os-notebook { padding: 24px 18px; }
+  .session3-theme .s3-os-heading h2 { font-size: 27px; }
+  .session3-theme .s3-os-section { padding: 18px 15px; }
+  .session3-theme .s3-os-section :is(p, ul, ol) { font-size: 16px; }
+  .s3-translation-tooltip { font-size: 18px; padding: 8px 14px; }
+}
+@media print { .s3-translation-tooltip, .session3-theme .s3-translation-help { display: none !important; } }

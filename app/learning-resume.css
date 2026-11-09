@@ -1,0 +1,45 @@
+.identity-heading :is(h1,p) span>small,.identity-form span>small,.student-resume-card h1>small,.student-resume-card button span>small{display:block;font-family:Arial,sans-serif;line-height:1.7;font-size:.8em;margin-top:4px}.student-name-picker{position:relative;min-width:0}.student-name-picker>label{display:block;color:#233a4c;font-size:13px;font-weight:750;line-height:1.8;margin-bottom:7px}.student-name-picker>div{display:flex;align-items:center;gap:8px;border:1px solid #ccdce0;border-radius:11px;padding:0 12px;background:white}.student-name-picker>div>svg{flex:0 0 auto;color:#809aa4}.student-name-picker>div>input{min-width:0;width:100%;border:0!important;outline:none;background:transparent;padding:13px 0;font-size:16px}.student-name-picker .student-name-selected{color:#168e79}.student-name-suggestions{position:absolute;top:100%;left:0;right:0;list-style:none;margin:6px 0 0;padding:5px;max-height:235px;overflow:auto;border:1px solid #cddde0;border-radius:12px;box-shadow:0 16px 40px #0b20372a;background:white;z-index:30}.student-name-suggestions li{margin:0;padding:0}.student-name-suggestions button{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;padding:11px 12px;border:0;background:white;border-radius:7px;text-align:start;font-size:14px;color:#233a4c}.student-name-suggestions button:hover,.student-name-suggestions button.highlighted{background:#eaf5f2}.identity-roster-help{display:flex;align-items:center;gap:8px;font-size:12px;color:#617b85;margin:0;line-height:1.8}
+/* The resume card has its own single-column layout; the login form stays two-column. */
+.identity-card.student-resume-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: min(100%, 620px);
+  max-width: 620px;
+  min-width: 0;
+  padding: clamp(22px, 4vw, 38px);
+  overflow: visible;
+  text-align: center;
+}
+.identity-card.student-resume-card > * { min-width: 0; max-width: 100%; }
+.identity-card.student-resume-card > .resume-symbol { align-self: center; margin: 0 0 16px; flex-shrink: 0; }
+.identity-card.student-resume-card > .identity-kicker { justify-content: center; flex-wrap: wrap; color: #527e72; line-height: 1.7; }
+.identity-card.student-resume-card h1 { margin: 14px 0 10px; font-size: clamp(25px, 4vw, 30px); font-weight: 700; line-height: 1.35; }
+.identity-card.student-resume-card h1 > small { margin-top: 6px; font-size: 18px; font-weight: 400; }
+.identity-card.student-resume-card > p { margin: 0; line-height: 1.75; overflow-wrap: anywhere; }
+.identity-card.student-resume-card > .resume-identity { width: 100%; margin: 22px 0; padding: 20px; }
+.identity-card.student-resume-card .resume-identity > strong { overflow-wrap: anywhere; }
+.identity-card.student-resume-card > .identity-submit { width: 100%; min-height: 70px; grid-template-columns: auto minmax(0, 1fr); line-height: 1.55; }
+.identity-card.student-resume-card > .identity-submit > span { min-width: 0; white-space: normal; overflow-wrap: anywhere; text-align: center; }
+.identity-card.student-resume-card > .resume-other { min-height: 60px; line-height: 1.6; white-space: normal; overflow-wrap: anywhere; }
+.identity-card.student-resume-card > .resume-device-note { margin-top: 16px; color: #667c85; font-size: 11px; }
+.resume-symbol{display:inline-grid;place-items:center;width:60px;height:60px;border-radius:19px;color:#158d7b;background:#e1f4ed;margin-bottom:14px}.student-resume-card h1{font-size:29px;line-height:1.4;margin:16px 0}.student-resume-card>p{font-size:14px;line-height:1.9;color:#677d86}.resume-identity{display:grid;gap:9px;background:#f2f8f5;border:1px solid #d5e5dc;border-radius:14px;padding:22px;margin:22px 0;color:#285748}.resume-identity>strong{font-size:20px;line-height:1.7}.resume-identity>span{font-size:13px}.resume-other{width:100%;border:1px solid #d6e0e2;border-radius:11px;padding:13px;background:white;color:#55717d;margin-top:12px;font-weight:750}.student-resume-card .resume-device-note{font-size:11px}.learning-save-badge{display:flex;align-items:center;gap:8px;color:#4c7569;font-size:11px;line-height:1.7;margin:5px 0 13px;padding:9px 13px;border-radius:9px;background:#edf7f0;border:1px solid #d9e9dc}.learning-save-badge.pending{background:#fff8e6;color:#86691f;border-color:#ead9ab}.learning-save-badge.storage-error{background:#fff0ec;color:#a44d39;border-color:#e8c1b6}.learning-save-badge.syncing{background:#eef6f9;color:#587986}.learning-loading{padding:30px;color:#617e77;text-align:center;font-size:14px}.learning-resumed-note{display:flex;align-items:center;gap:8px;padding:11px 15px;background:#edf7eb;border:1px solid #d0e4c5;border-radius:11px;margin-bottom:17px;color:#427240;font-size:12px;line-height:1.8}
+
+.identity-form .student-name-picker > label {
+  display: grid;
+  gap: 3px;
+  min-height: 44px;
+  margin-bottom: 8px;
+  font: 700 13px/1.5 "Segoe UI", Tahoma, Arial, sans-serif;
+}
+.student-name-picker > label > small { color: #607782; font: 12px/1.5 Arial, sans-serif; }
+.student-name-picker .student-name-input { position: relative; padding: 0 12px; transition: border-color .15s, box-shadow .15s; }
+.student-name-picker .student-name-input:focus-within { border-color: #22b7c7; box-shadow: 0 0 0 3px #22b7c71f; }
+.identity-form .student-name-input > input,
+.identity-form .student-name-input > input:focus { border: 0; border-radius: 0; box-shadow: none; outline: none; padding: 0; height: 52px; background: transparent; }
+.student-name-input > input::placeholder { color: #91a2aa; font-size: 14px; }
+.student-name-picker .student-name-suggestions { margin: 0; top: calc(100% + 6px); z-index: 60; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.student-name-picker .student-name-suggestions.above { top: auto; bottom: calc(100% + 6px); }
+.student-name-suggestions button { min-height: 42px; white-space: normal; overflow-wrap: anywhere; font-family: "Segoe UI", Tahoma, Arial, sans-serif; line-height: 1.5; cursor: pointer; }
+.student-name-picker .student-name-help { display: block; margin-top: 8px; color: #617982; font: 11px/1.6 "Segoe UI", Tahoma, Arial, sans-serif; }
+@media (max-width:700px) { .identity-form .student-name-picker > label { min-height: 0; } }

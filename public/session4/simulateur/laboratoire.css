@@ -1,0 +1,100 @@
+:root{--bg:#f1f4f4;--surface:#fff;--surface2:#edf3f4;--fg:#122c3b;--muted:#5b707b;--line:#cbdadd;--accent:#107e80;--accent-fg:#fff;--good:#137654;--hi:#f5ce58;--body:"Segoe UI",Arial,sans-serif;--display:"Segoe UI",Arial,sans-serif;--mono:Consolas,"Courier New",monospace;color-scheme:light}
+body{padding:0;margin:0;font-size:15px;background:#f3f6f6}button,input,select,textarea{font-family:inherit}button{cursor:pointer}button:focus-visible,[role=button]:focus-visible{outline:3px solid #e5ae28;outline-offset:2px}main{min-width:0}main>header{margin:0}.loading{padding:30px}
+.lab-top{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#102c40;color:#fff;padding:18px 22px}.lab-top div{display:grid;gap:5px}.lab-top span:first-child{font-size:10px;letter-spacing:.13em;color:#87d1cd;font-weight:700}.lab-top strong{font-size:19px}.local-badge{font-size:11px;white-space:nowrap;border:1px solid #56727f;padding:7px 10px;border-radius:30px;color:#d1eee9}
+.machine-tabs{display:flex;gap:8px;padding:12px 18px;background:#fff;border-bottom:1px solid var(--line)}.machine-tabs button{display:flex;align-items:center;gap:7px;padding:8px 15px;border:1px solid var(--line);background:#fff;color:var(--fg);font-weight:700;font-size:14px;border-radius:10px}.machine-tabs button[aria-pressed=true]{background:#e5f5f2;border-color:#12827e;color:#09645e}.machine-tabs img{width:38px;height:27px;object-fit:contain}.machine-tabs small{font-size:11px;color:var(--muted);font-weight:400}
+.lab-grid{display:grid;grid-template-columns:260px minmax(0,1fr);gap:14px;padding:16px}.mission-card{padding:17px 15px;border:1px solid var(--line);border-radius:13px;background:white;align-self:start}.mini-label{font-size:10px;font-weight:800;letter-spacing:.08em;color:#07746d}#mission-steps{list-style:none;padding:0;margin:15px 0;display:grid;gap:14px}#mission-steps>li{display:flex;gap:9px;color:#62717a;font-size:13px;line-height:1.5}#mission-steps>li.current{color:#173444;font-weight:600}.step-number{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#e9eef0;flex-shrink:0;font-size:11px;font-weight:700}.current .step-number{background:#fbe8ad;color:#604a15}.done .step-number{background:#d5f0e6;color:#106645}.done>div>p{color:#267455}#mission-steps details{margin-top:5px;font-size:11px;font-weight:400}#mission-steps details p{padding:6px 0;overflow-wrap:anywhere}.mission-result{font-size:12px;background:#f2f5f6;border-radius:7px;padding:9px;font-weight:700}.mission-result.complete{color:#15664f;background:#e4f5ec}.help{margin-top:15px;font-size:12px;color:#5a707b}.help p{padding-top:8px}.simulation{min-width:0}.desktop-top{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:#e3ecee;border-radius:10px 10px 0 0;font-size:12px}.desktop-top span{font-size:10px;color:#58707e}.app-shortcuts{display:flex;flex-wrap:wrap;gap:5px;padding:8px;background:#fff;border:1px solid var(--line)}.app-shortcuts button{padding:7px 9px;border:1px solid #cbdadc;background:#f5f9fa;color:#153b4a;border-radius:6px;font-size:11px;font-weight:650}
+.osx{height:560px;border-radius:0 0 10px 10px;font-family:"Segoe UI",Arial,sans-serif}.osx .osn{font-size:12px}.oswin{border-color:#71a6aa;border-width:1px;box-shadow:0 12px 35px #0526354d;border-radius:9px}.oswt{background:#eff5f6;color:#133345;padding:6px 5px 6px 12px}.oswin.inactive .oswt{background:#e4ebed}.oswt .oswtitle{font-size:12px}.oswbody{font-size:14px}.osform label{font-size:13px}.oxcmd button{font-size:12px;min-height:30px}.oxside button{font-size:12px}.oxside{width:110px}.oxlist .ositem{width:95px}.oxaddr{font-family:var(--mono);font-size:12px}.oxsearch{width:105px}.osbar{background:#0d2338e8}.osbtn{background:#327280}.osdesk .osn{color:#fff;text-shadow:0 1px 3px #000}.osnote textarea{font-size:15px}.osmail{grid-template-columns:130px minmax(0,1fr)}.osdlg{font-size:13px}.ostray{gap:5px;font-size:10px}.sim-terminal{background:#101d2a;color:#eff7ff;display:flex;flex-direction:column;flex:1;min-height:0;padding:13px}.sim-terminal pre{flex:1;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.65 var(--mono);margin:0;min-height:130px}.sim-terminal .sim-command-line{display:flex;gap:7px;align-items:end;margin-top:12px}.sim-terminal label{flex:1;display:grid;gap:5px;font-size:11px}.sim-terminal input{background:#182d3e!important;color:white!important;border:1px solid #527287!important;min-width:0;font:13px var(--mono)!important;width:100%}.sim-terminal button{background:#b7e7e1;border:0;border-radius:6px;padding:11px 12px;font-weight:700;color:#102e3e}
+#network-view{border:1px solid var(--line);border-radius:12px;background:#fff;padding:18px}#network-view h2{font-size:19px}#network-view>p{font-size:13px;color:#617882;margin-top:6px}.network-plan{position:relative;height:420px;margin:15px 0;background:radial-gradient(#c7d9dc .7px,transparent .7px);background-size:18px 18px;border-radius:12px}.plan-switch{position:absolute;top:15px;left:50%;transform:translateX(-50%);display:grid;text-align:center;width:160px;font-size:13px}.plan-switch img{width:160px;height:115px;object-fit:contain}.plan-pc{position:absolute;top:230px;width:160px;display:grid;justify-items:center;font-size:13px}.plan-pc img{width:120px;height:100px;object-fit:contain}.plan-pc code{font-size:11px;color:#56717d}.plan-pc button{font-size:11px;padding:7px 8px;border:1px solid #167c75;background:#e4f6ee;color:#146c59;border-radius:6px;margin-top:6px}.pc-A{left:7%}.pc-B{right:7%}.wire{position:absolute;background:#278b9a;height:3px;width:36%;top:192px;left:18%;transform:rotate(-44deg)}.wire-b{left:auto;right:18%;transform:rotate(44deg)}.wire.unplugged{background:repeating-linear-gradient(90deg,#c96455 0 8px,transparent 8px 14px)}.unplugged img{filter:grayscale(1)}.plan-pc.unplugged button{background:#fff0e9;color:#a14832;border-color:#d8a08c}.cable-detail{display:flex;align-items:center;gap:12px;margin:0;border-top:1px solid var(--line);padding-top:12px}.cable-detail img{width:65px;height:65px;object-fit:contain}.cable-detail figcaption{font-size:12px;color:#5c737d}.lab-footer{padding:0 20px 15px;font-size:10px;color:#6a7e85}.sim-tooltip{position:fixed;z-index:100050;width:max-content;max-width:min(280px,90vw);padding:11px 15px;border-radius:10px;background:#10283c;color:#fff;box-shadow:0 6px 20px #04172730;font:17px/1.7 "Segoe UI",Arial,sans-serif;direction:rtl;text-align:right;pointer-events:none}.sim-tooltip[hidden]{display:none!important}
+@media(max-width:860px){.lab-grid{grid-template-columns:1fr}.mission-card{padding:15px}#mission-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.osx{height:570px}.mission-card .help{display:none}.lab-top strong{font-size:17px}}
+@media(max-width:500px){.lab-top{padding:14px;align-items:start}.local-badge{font-size:9px;white-space:normal;max-width:100px;text-align:center}.lab-top strong{font-size:15px}.lab-grid{padding:9px;gap:10px}.machine-tabs{padding:9px;gap:5px}.machine-tabs button{font-size:12px;padding:8px}.machine-tabs small{display:none}.machine-tabs img{width:27px;height:24px}#mission-steps{grid-template-columns:1fr}.mission-card{padding:13px}.osx{height:550px}.osmail{grid-template-columns:1fr}.osmlist{max-height:100px;overflow:auto}.oxsearch{width:65px}.app-shortcuts button{font-size:10px}.app-shortcuts{gap:3px}.plan-pc{width:110px}.plan-pc img{width:100px}.pc-A{left:0}.pc-B{right:0}.network-plan{height:420px}.osform select{max-width:100%}.osrow{gap:5px}.osdlg{padding:9px}.oswin .btn{font-size:12px}.sim-terminal .sim-command-line{flex-wrap:wrap}.sim-terminal label{min-width:130px}}
+
+.lab-guided .guide-stage {
+  padding: 16px 20px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.lab-guided #guide-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+}
+.lab-guided #guide-steps button,
+.lab-guided #guide-tools button,
+.lab-guided .guide-footer button {
+  min-height: 40px;
+  border: 1px solid #b9cfd0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: #163f49;
+  background: white;
+  font-size: 13px;
+  font-weight: 700;
+}
+.lab-guided #guide-steps button { min-width: 40px; }
+.lab-guided #guide-steps button.done { color: #146348; background: #dff3e8; }
+.lab-guided #guide-steps button[aria-current="step"] { border-color: #16857d; box-shadow: inset 0 0 0 1px #16857d; }
+.lab-guided button:disabled { opacity: .5; cursor: default; }
+.lab-guided .guide-heading h2 { margin: 3px 0 5px; font-size: 1.3rem; }
+.lab-guided #guide-task { margin: 0; line-height: 1.5; }
+.lab-guided #guide-command { display: inline-block; margin-top: 8px; border-radius: 6px; padding: 5px 9px; background: #edf4f2; color: #164b44; }
+.lab-guided #guide-command[hidden] { display: none; }
+.lab-guided #guide-tools { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+.lab-guided #guide-tools button[aria-pressed="true"] { color: #075d53; border-color: #16857d; background: #e2f3ed; }
+.lab-guided .lab-grid { display: block; padding: 12px 18px; }
+.lab-guided .guide-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 9px;
+  padding: 0 18px 14px;
+}
+.lab-guided #guide-status { margin: 0; font-size: .8rem; text-align: center; color: #30525b; }
+.lab-guided #guide-next { background: #146a62; color: white; border-color: #146a62; }
+.lab-guided .osx { height: 342px; background: #eff5f3 !important; }
+.lab-guided .oswins { bottom: 0; }
+.lab-guided .oswin {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-shadow: none;
+  border-radius: 0 0 10px 10px;
+}
+.lab-guided .oswin.inactive,
+.lab-guided .osdesk,
+.lab-guided .osbar,
+.lab-guided .osctx,
+.lab-guided .oswt button,
+.lab-guided .app-shortcuts,
+.lab-guided .oxside,
+.lab-guided .oxtb button,
+.lab-guided .oxsearch,
+.lab-guided .osnotebar,
+.lab-guided .ostabs,
+.lab-guided [data-close],
+.lab-guided [data-cable="A"],
+.lab-guided .cable-detail { display: none !important; }
+.lab-guided .oxcmd button { display: none !important; }
+.lab-guided[data-guide-action="copy"] .oxcmd button[data-cmd="copy"]:not([hidden]),
+.lab-guided[data-guide-action="paste"] .oxcmd button[data-cmd="paste"]:not([hidden]),
+.lab-guided[data-guide-action="open"] .oxcmd button[data-cmd="open"]:not([hidden]) { display: inline-flex !important; }
+.lab-guided .ostoast { bottom: 12px; }
+.lab-guided .network-plan { height: 230px; }
+.lab-guided .plan-switch { top: 2px; }
+.lab-guided .plan-switch img { height: 68px; }
+.lab-guided .plan-pc { top: 108px; }
+.lab-guided .plan-pc img { height: 64px; }
+.lab-guided .wire { top: 93px; transform: rotate(-23deg); }
+.lab-guided .wire-b { transform: rotate(23deg); }
+
+@media (max-width: 500px) {
+  .lab-guided .guide-stage { padding: 13px 12px; }
+  .lab-guided .lab-grid { padding: 8px; }
+  .lab-guided .osx { height: 368px; }
+  .lab-guided .guide-footer { display: grid; grid-template-columns: 1fr 1fr; padding: 0 9px 10px; }
+  .lab-guided #guide-status { grid-column: 1/-1; grid-row: 1; }
+  .lab-guided .wire { transform: rotate(-35deg); }
+  .lab-guided .wire-b { transform: rotate(35deg); }
+}

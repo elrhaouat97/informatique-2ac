@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1125" viewBox="0 0 1600 1125" role="img" aria-labelledby="title desc">
+  <title id="title">LAB·2AC — Vue d’ensemble du projet pédagogique</title>
+  <desc id="desc">Schéma du parcours élève, de l’espace enseignant et de l’architecture technique de la plateforme LAB·2AC.</desc>
+  <defs>
+    <linearGradient id="headerGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A2036"/>
+      <stop offset="1" stop-color="#103451"/>
+    </linearGradient>
+    <linearGradient id="paperGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7F8F5"/>
+      <stop offset="1" stop-color="#EEF7F7"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#17324B" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .latin { font-family: "Segoe UI", Arial, sans-serif; }
+      .regular { font-weight: 400; }
+      .medium { font-weight: 600; }
+      .muted { fill: #63758A; }
+      .ink { fill: #14253A; }
+      .cyan { fill: #169EAF; }
+      .green { fill: #258C5C; }
+      .red { fill: #D34A47; }
+      .small { font-size: 18px; }
+      .tiny { font-size: 15px; }
+      .card-title { font-size: 24px; font-weight: 600; fill: #14253A; }
+      .card-sub { font-size: 17px; fill: #169EAF; }
+      .body { font-size: 17px; fill: #63758A; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1125" rx="34" fill="url(#paperGradient)"/>
+
+  <!-- En-tête -->
+  <path d="M34 0H1566Q1600 0 1600 34V250H0V34Q0 0 34 0Z" fill="url(#headerGradient)"/>
+  <circle cx="88" cy="72" r="32" fill="#F6C843"/>
+  <text x="88" y="81" text-anchor="middle" class="latin medium" font-size="25" fill="#0A2036">//</text>
+  <text x="137" y="67" class="latin medium" font-size="27" fill="#FFFFFF">LAB·2AC</text>
+  <text x="138" y="91" class="latin regular" font-size="14" letter-spacing="4" fill="#8EA8C1">INFORMATIQUE</text>
+
+  <text x="58" y="143" class="latin regular" font-size="17" letter-spacing="2" fill="#48C9D5">PROJET PÉDAGOGIQUE NUMÉRIQUE</text>
+  <text x="58" y="191" class="latin medium" font-size="42" fill="#FFFFFF">Un parcours interactif, de la mission à l’évaluation</text>
+  <text x="58" y="226" class="latin regular" font-size="21" fill="#C7D7E6">Des activités guidées, une progression visible et un suivi en temps réel</text>
+
+  <circle cx="1450" cy="125" r="78" fill="#FFFFFF" fill-opacity="0.06" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2"/>
+  <circle cx="1450" cy="125" r="63" fill="none" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="9"/>
+  <text x="1450" y="124" text-anchor="middle" class="latin medium" font-size="48" fill="#F6C843">15</text>
+  <text x="1450" y="153" text-anchor="middle" class="latin regular" font-size="16" fill="#D7E3EE">séances</text>
+
+  <!-- Repères rapides -->
+  <rect x="55" y="278" width="350" height="70" rx="18" fill="#FFFFFF" stroke="#D8E2E8"/>
+  <circle cx="91" cy="313" r="18" fill="#E6F7F9"/>
+  <text x="91" y="320" text-anchor="middle" class="latin medium" font-size="18" fill="#169EAF">2h</text>
+  <text x="122" y="307" class="latin medium" font-size="18" fill="#14253A">Deux heures par séance</text>
+  <text x="122" y="330" class="latin regular" font-size="15" fill="#63758A">Durée prévue : 120 minutes</text>
+
+  <rect x="435" y="278" width="350" height="70" rx="18" fill="#FFFFFF" stroke="#D8E2E8"/>
+  <circle cx="471" cy="313" r="18" fill="#FFF5CF"/>
+  <text x="471" y="320" text-anchor="middle" class="latin medium" font-size="19" fill="#8C6A09">2</text>
+  <text x="502" y="307" class="latin medium" font-size="18" fill="#14253A">Travail en binôme</text>
+  <text x="502" y="330" class="latin regular" font-size="15" fill="#63758A">Collaboration structurée</text>
+
+  <rect x="815" y="278" width="350" height="70" rx="18" fill="#FFFFFF" stroke="#D8E2E8"/>
+  <circle cx="851" cy="313" r="18" fill="#E9F7EF"/>
+  <text x="851" y="320" text-anchor="middle" class="latin medium" font-size="16" fill="#258C5C">FR</text>
+  <text x="882" y="307" class="latin medium" font-size="18" fill="#14253A">Interface bilingue</text>
+  <text x="882" y="330" class="latin regular" font-size="15" fill="#63758A">Questions et réponses coordonnées</text>
+
+  <rect x="1195" y="278" width="350" height="70" rx="18" fill="#FFFFFF" stroke="#D8E2E8"/>
+  <circle cx="1231" cy="313" r="18" fill="#F0EBFF"/>
+  <text x="1231" y="320" text-anchor="middle" class="latin medium" font-size="16" fill="#7255B6">PC</text>
+  <text x="1262" y="307" class="latin medium" font-size="18" fill="#14253A">Interface responsive</text>
+  <text x="1262" y="330" class="latin regular" font-size="15" fill="#63758A">Ordinateur, tablette et mobile</text>
+
+  <!-- Parcours élève -->
+  <text x="55" y="397" class="latin regular" font-size="16" letter-spacing="2" fill="#169EAF">PARCOURS ÉLÈVE</text>
+  <text x="55" y="434" class="latin medium" font-size="31" fill="#14253A">Une étape claire à la fois</text>
+
+  <!-- flèches -->
+  <path d="M320 535H349" stroke="#169EAF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M343 528L351 535L343 542" fill="none" stroke="#169EAF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M617 535H646" stroke="#169EAF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M640 528L648 535L640 542" fill="none" stroke="#169EAF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M914 535H943" stroke="#169EAF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M937 528L945 535L937 542" fill="none" stroke="#169EAF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1211 535H1240" stroke="#169EAF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1234 528L1242 535L1234 542" fill="none" stroke="#169EAF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Étape 1 -->
+  <g filter="url(#shadow)">
+    <rect x="55" y="465" width="265" height="205" rx="22" fill="#FFFFFF" stroke="#D8E2E8"/>
+  </g>
+  <circle cx="92" cy="505" r="22" fill="#E6F7F9"/>
+  <text x="92" y="513" text-anchor="middle" class="latin medium" font-size="21" fill="#169EAF">1</text>
+  <text x="126" y="499" class="latin regular" font-size="13" letter-spacing="1" fill="#63758A">ÉTAPE 01</text>
+  <text x="77" y="550" class="card-title latin">Identification</text>
+  <text x="77" y="578" class="card-sub latin">Entrée dans le parcours</text>
+  <circle cx="82" cy="611" r="4" fill="#F6C843"/><text x="96" y="617" class="body latin">Nom(s), classe et groupe</text>
+  <circle cx="82" cy="643" r="4" fill="#F6C843"/><text x="96" y="649" class="body latin">Séance autorisée</text>
+
+  <!-- Étape 2 -->
+  <g filter="url(#shadow)"><rect x="352" y="465" width="265" height="205" rx="22" fill="#FFFFFF" stroke="#D8E2E8"/></g>
+  <circle cx="389" cy="505" r="22" fill="#FFF5CF"/>
+  <text x="389" y="513" text-anchor="middle" class="latin medium" font-size="21" fill="#8C6A09">2</text>
+  <text x="423" y="499" class="latin regular" font-size="13" letter-spacing="1" fill="#63758A">ÉTAPE 02</text>
+  <text x="374" y="550" class="card-title latin">Mission</text>
+  <text x="374" y="578" class="card-sub latin">Comprendre avant d’agir</text>
+  <circle cx="379" cy="611" r="4" fill="#F6C843"/><text x="393" y="617" class="body latin">Situation-problème</text>
+  <circle cx="379" cy="643" r="4" fill="#F6C843"/><text x="393" y="649" class="body latin">Objectifs et binôme</text>
+
+  <!-- Étape 3 -->
+  <g filter="url(#shadow)"><rect x="649" y="465" width="265" height="205" rx="22" fill="#FFFFFF" stroke="#D8E2E8"/></g>
+  <circle cx="686" cy="505" r="22" fill="#E9F7EF"/>
+  <text x="686" y="513" text-anchor="middle" class="latin medium" font-size="21" fill="#258C5C">3</text>
+  <text x="720" y="499" class="latin regular" font-size="13" letter-spacing="1" fill="#63758A">ÉTAPE 03</text>
+  <text x="671" y="550" class="card-title latin">Atelier</text>
+  <text x="671" y="578" class="card-sub latin">Manipuler et réussir</text>
+  <circle cx="676" cy="611" r="4" fill="#F6C843"/><text x="690" y="617" class="body latin">Exercices progressifs</text>
+  <circle cx="676" cy="643" r="4" fill="#F6C843"/><text x="690" y="649" class="body latin">Réussir pour continuer</text>
+
+  <!-- Étape 4 -->
+  <g filter="url(#shadow)"><rect x="946" y="465" width="265" height="205" rx="22" fill="#FFFFFF" stroke="#D8E2E8"/></g>
+  <circle cx="983" cy="505" r="22" fill="#F0EBFF"/>
+  <text x="983" y="513" text-anchor="middle" class="latin medium" font-size="21" fill="#7255B6">4</text>
+  <text x="1017" y="499" class="latin regular" font-size="13" letter-spacing="1" fill="#63758A">ÉTAPE 04</text>
+  <text x="968" y="550" class="card-title latin">Trace écrite</text>
+  <text x="968" y="578" class="card-sub latin">Retenir l’essentiel</text>
+  <circle cx="973" cy="611" r="4" fill="#F6C843"/><text x="987" y="617" class="body latin">Synthèse visuelle</text>
+  <circle cx="973" cy="643" r="4" fill="#F6C843"/><text x="987" y="649" class="body latin">Cours bilingue</text>
+
+  <!-- Étape 5 -->
+  <g filter="url(#shadow)"><rect x="1243" y="465" width="302" height="205" rx="22" fill="#FFFFFF" stroke="#D8E2E8"/></g>
+  <circle cx="1280" cy="505" r="22" fill="#FFF0EF"/>
+  <text x="1280" y="513" text-anchor="middle" class="latin medium" font-size="21" fill="#D34A47">5</text>
+  <text x="1314" y="499" class="latin regular" font-size="13" letter-spacing="1" fill="#63758A">ÉTAPE 05</text>
+  <text x="1265" y="550" class="card-title latin">Évaluation</text>
+  <text x="1265" y="578" class="card-sub latin">Mesurer les acquis</text>
+  <circle cx="1270" cy="611" r="4" fill="#F6C843"/><text x="1284" y="617" class="body latin">Résultat immédiat</text>
+  <circle cx="1270" cy="643" r="4" fill="#F6C843"/><text x="1284" y="649" class="body latin">Pourcentage et note /20</text>
+
+  <!-- Pilotage enseignant -->
+  <rect x="55" y="706" width="720" height="244" rx="24" fill="#FFFFFF" stroke="#D8E2E8" stroke-width="2"/>
+  <rect x="55" y="706" width="720" height="7" rx="4" fill="#F6C843"/>
+  <circle cx="101" cy="760" r="27" fill="#FFF5CF"/>
+  <text x="101" y="768" text-anchor="middle" class="latin medium" font-size="20" fill="#8C6A09">P</text>
+  <text x="144" y="752" class="latin medium" font-size="27" fill="#14253A">Espace enseignant</text>
+  <text x="144" y="780" class="latin regular" font-size="17" fill="#63758A">Piloter, observer et accompagner</text>
+  <rect x="620" y="738" width="118" height="34" rx="17" fill="#E9F7EF"/>
+  <circle cx="641" cy="755" r="6" fill="#258C5C"/>
+  <text x="659" y="761" class="latin medium" font-size="14" fill="#258C5C">Temps réel</text>
+
+  <rect x="82" y="814" width="310" height="47" rx="13" fill="#F7F9FA" stroke="#D8E2E8"/>
+  <circle cx="106" cy="837" r="8" fill="#169EAF"/><text x="126" y="843" class="latin regular" font-size="17" fill="#14253A">Ouvrir / verrouiller les séances</text>
+  <rect x="410" y="814" width="338" height="47" rx="13" fill="#F7F9FA" stroke="#D8E2E8"/>
+  <circle cx="434" cy="837" r="8" fill="#169EAF"/><text x="454" y="843" class="latin regular" font-size="17" fill="#14253A">Réponses regroupées par élève</text>
+  <rect x="82" y="876" width="310" height="47" rx="13" fill="#F7F9FA" stroke="#D8E2E8"/>
+  <circle cx="106" cy="899" r="8" fill="#169EAF"/><text x="126" y="905" class="latin regular" font-size="17" fill="#14253A">Tentatives et réponses détaillées</text>
+  <rect x="410" y="876" width="338" height="47" rx="13" fill="#F7F9FA" stroke="#D8E2E8"/>
+  <circle cx="434" cy="899" r="8" fill="#169EAF"/><text x="454" y="905" class="latin regular" font-size="17" fill="#14253A">Export Excel / CSV lisible</text>
+
+  <!-- Rapport -->
+  <rect x="800" y="706" width="745" height="244" rx="24" fill="#FFFFFF" stroke="#D8E2E8" stroke-width="2"/>
+  <rect x="800" y="706" width="745" height="7" rx="4" fill="#169EAF"/>
+  <circle cx="846" cy="760" r="27" fill="#E6F7F9"/>
+  <text x="846" y="768" text-anchor="middle" class="latin medium" font-size="20" fill="#169EAF">%</text>
+  <text x="889" y="752" class="latin medium" font-size="27" fill="#14253A">Suivi pédagogique lisible</text>
+  <text x="889" y="780" class="latin regular" font-size="17" fill="#63758A">Un rapport individuel complet pour chaque élève</text>
+
+  <rect x="827" y="814" width="156" height="106" rx="16" fill="#F7F9FA" stroke="#D8E2E8"/>
+  <text x="845" y="842" class="latin regular" font-size="13" fill="#63758A">TENTATIVES</text>
+  <text x="845" y="891" class="latin medium" font-size="35" fill="#14253A">12</text>
+  <rect x="997" y="814" width="156" height="106" rx="16" fill="#F7F9FA" stroke="#D8E2E8"/>
+  <text x="1015" y="842" class="latin regular" font-size="13" fill="#63758A">RÉUSSITE</text>
+  <text x="1015" y="891" class="latin medium" font-size="35" fill="#14253A">10/12</text>
+  <rect x="1167" y="814" width="156" height="106" rx="16" fill="#E9F7EF" stroke="#BFE5CF"/>
+  <text x="1185" y="842" class="latin regular" font-size="13" fill="#63758A">POURCENTAGE</text>
+  <text x="1185" y="891" class="latin medium" font-size="35" fill="#258C5C">83%</text>
+  <rect x="1337" y="814" width="181" height="106" rx="16" fill="#FFF5CF" stroke="#E9D583"/>
+  <text x="1355" y="842" class="latin regular" font-size="13" fill="#63758A">NOTE INDICATIVE</text>
+  <text x="1355" y="891" class="latin medium" font-size="33" fill="#8C6A09">16,6/20</text>
+
+  <!-- Architecture -->
+  <rect x="55" y="982" width="1490" height="102" rx="23" fill="#0A2036"/>
+  <rect x="82" y="1007" width="388" height="52" rx="14" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <circle cx="112" cy="1033" r="10" fill="#48C9D5"/>
+  <text x="136" y="1028" class="latin medium" font-size="18" fill="#FFFFFF">GitHub Pages</text>
+  <text x="136" y="1048" class="latin regular" font-size="13" fill="#9FB4C7">Interface élève et enseignant</text>
+  <path d="M486 1033H526" stroke="#6D879E" stroke-width="3"/><path d="M519 1026L527 1033L519 1040" fill="none" stroke="#6D879E" stroke-width="3"/>
+  <rect x="542" y="1007" width="388" height="52" rx="14" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <circle cx="572" cy="1033" r="10" fill="#F6C843"/>
+  <text x="596" y="1028" class="latin medium" font-size="18" fill="#FFFFFF">Supabase</text>
+  <text x="596" y="1048" class="latin regular" font-size="13" fill="#9FB4C7">Réponses, scores et progression</text>
+  <path d="M946 1033H986" stroke="#6D879E" stroke-width="3"/><path d="M979 1026L987 1033L979 1040" fill="none" stroke="#6D879E" stroke-width="3"/>
+  <rect x="1002" y="1007" width="516" height="52" rx="14" fill="#FFFFFF" fill-opacity="0.07" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <circle cx="1032" cy="1033" r="10" fill="#64D7A1"/>
+  <text x="1056" y="1028" class="latin medium" font-size="18" fill="#FFFFFF">Tableau professeur</text>
+  <text x="1056" y="1048" class="latin regular" font-size="13" fill="#9FB4C7">Analyse et accompagnement en temps réel</text>
+
+  <text x="800" y="1110" text-anchor="middle" class="latin regular" font-size="14" fill="#63758A">LAB·2AC · Prof. Mohamed ELRHAOUAT · Collège Al Wahda</text>
+</svg>
