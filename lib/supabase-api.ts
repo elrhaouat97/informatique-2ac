@@ -353,12 +353,23 @@ export function submitCourseAttempt(payload: Record<string, unknown>) {
 export function evaluationPassed(participantId: string, sessionId: number): boolean {
   try {
     const db = loadDB();
+    // Séance 2 has NO visible QCM: its évaluation is the two practical stages
+    // (assembler + dépanner). It is passed when BOTH stages are recorded with
+    // at least half their points. (The former "quiz only" rule could never be
+    // satisfied — the quiz block is hidden for séance 2 — which locked séance 3
+    // forever; reported by students on 2026-11-10.)
+    if (sessionId === 2) {
+      const stages = new Map<string, LocalSubmission>();
+      for (const s of db.submissions) {
+        if (s.participantId !== participantId || s.sessionId !== 2 || s.activityType !== "practical_evaluation") continue;
+        if (s.activityId === "s2-evaluation-assembler" || s.activityId === "s2-evaluation-depanner") stages.set(s.activityId, s);
+      }
+      const ok = (s?: LocalSubmission) => !!s && s.score !== null && s.maxScore !== null && s.maxScore > 0 && s.score * 2 >= s.maxScore;
+      return ok(stages.get("s2-evaluation-assembler")) && ok(stages.get("s2-evaluation-depanner"));
+    }
     return db.submissions.some((s) => {
       if (s.participantId !== participantId || s.sessionId !== sessionId) return false;
-      // Séance 2 also records practical stages (assembly/repair): only its QCM counts here.
-      const counts = sessionId === 2
-        ? s.activityType === "quiz"
-        : s.activityType === "quiz" || s.activityType === "practical_evaluation";
+      const counts = s.activityType === "quiz" || s.activityType === "practical_evaluation";
       return counts && s.score !== null && s.maxScore !== null && s.maxScore > 0 && s.score * 2 >= s.maxScore;
     });
   } catch {
