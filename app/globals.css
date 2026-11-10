@@ -4333,3 +4333,14 @@ a:focus-visible {
   border: 1.5px solid #ecd27a; color: var(--navy-deep);
 }
 .mission-goal p { margin: 0; font-size: 17px; line-height: 1.7; }
+
+/* ——— Text lightening pilot (séance 1): brief card + read-more ——— */
+.brief-card .brief-text { margin: 8px 0 4px; font-size: 19px; font-weight: 700; line-height: 1.8; color: var(--navy-deep); font-family: "Cairo", Tahoma, sans-serif; }
+.brief-card .brief-fr { margin: 0 0 12px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+.brief-toggle {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid var(--navy); background: #fff; color: var(--navy);
+  font-size: 15px; font-weight: 800;
+}
+.brief-toggle:hover { background: var(--navy); color: #fff; }

@@ -236,3 +236,13 @@
 }
 .s3-visual-exercise .sequence-bank:has(button:nth-child(4)) { grid-template-columns: repeat(2,minmax(0,1fr)); }
 @media (max-width: 750px) { .s3-visual-exercise .sequence-bank:has(button:nth-child(4)) { grid-template-columns: 1fr; } }
+
+/* ——— Text lightening: Sara story brief + read-more ——— */
+.s3-brief-line { font-size: 18px; font-weight: 700; line-height: 1.8; color: #0a2242; font-family: "Cairo", Tahoma, sans-serif; }
+.s3-story-toggle {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;
+  padding: 9px 15px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid #10355f; background: #fff; color: #10355f;
+  font-size: 14.5px; font-weight: 800;
+}
+.s3-story-toggle:hover { background: #10355f; color: #fff; }

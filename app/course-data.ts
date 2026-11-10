@@ -32,6 +32,7 @@ export type CourseSession = {
   subtitle: LocalizedText;
   mission: LocalizedText;
   situation: LocalizedText;
+  brief?: LocalizedText;
   objectives: LocalizedText[];
   workshops: { label: string; duration: number; text: LocalizedText }[];
   deliverable: LocalizedText;
@@ -91,6 +92,10 @@ export const sessions: CourseSession[] = [
     situation: t(
       "Votre binôme accueille un élève qui n’a jamais touché un ordinateur. Il doit réussir ses premiers gestes et distinguer traitement manuel, semi-automatique et automatique.",
       "تستقبل ثنائيتكم تلميذا لم يستعمل الحاسوب من قبل. عليه إنجاز حركاته الأولى والتمييز بين المعالجة اليدوية وشبه الآلية والآلية."
+    ),
+    brief: t(
+      "Un camarade découvre l’ordinateur pour la première fois : aide-le à faire ses premiers gestes, puis découvre ce qu’est une information et comment elle est traitée.",
+      "عندك زميل جديد ما عمرو استعمل الحاسوب. اليوم غادي تعاونو يدير أولى الحركات بالفأرة ولوحة المفاتيح، وغادي تكتشف شنو هي المعلومة وكيفاش كتعالج: باليد، ولا مع الآلة، ولا آليا بوحدها."
     ),
     objectives: [
       t("Cliquer, double-cliquer, saisir et valider au clavier.", "النقر والنقر المزدوج والكتابة والتأكيد بلوحة المفاتيح."),
@@ -159,6 +164,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Périphériques, composants internes et capacités", "الملحقات والمكونات الداخلية والسعات"),
     mission: t("Construire un poste complet puis choisir une configuration adaptée au club multimédia.", "تركيب حاسوب كامل ثم اختيار تجهيز مناسب لنادي الوسائط."),
     situation: t("Le collège doit équiper un nouveau poste. Il faut reconnaître chaque élément, vérifier son rôle et justifier la configuration choisie.", "تريد المؤسسة تجهيز حاسوب جديد. يجب التعرف على كل عنصر ووظيفته وتبرير التجهيز المختار."),
+    brief: t(
+      "Le collège a acheté un nouvel ordinateur en pièces : à toi de choisir les bons composants, d’assembler le poste et de réparer les pannes qui apparaîtront.",
+      "المؤسسة شرات حاسوب جديد، وخاصك نتا تختار القطع الصحيحة، تركب الحاسوب كامل، وتصلح أي عطب يظهر ليك."
+    ),
     objectives: [
       t("Distinguer unité centrale et périphériques.", "التمييز بين الوحدة المركزية والملحقات."),
       t("Classer les périphériques d’entrée, de sortie, d’entrée/sortie et de stockage.", "تصنيف ملحقات الإدخال والإخراج والإدخال/الإخراج والتخزين."),

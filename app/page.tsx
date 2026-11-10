@@ -771,6 +771,7 @@ function MissionView({ session, lang, completed, onToggleCompleted, onBack, onSt
   onStartPractice: () => void;
 }) {
   const teacherMode = useTeacherCourse();
+  const [showFullSituation, setShowFullSituation] = useState(false);
   const labels = ui[lang];
   const unit = getUnit(session.unit);
   const situationParts = lang === "fr"
@@ -815,6 +816,20 @@ function MissionView({ session, lang, completed, onToggleCompleted, onBack, onSt
         </button>}
         <div className="session-hero-pattern" aria-hidden="true"><span /><span /><span /><span /></div>
       </section>
+      {session.brief && !teacherMode && (
+        <article className="content-card brief-card">
+          <span className="card-kicker"><Sparkles size={16} /> <span lang="ar" dir="rtl">القصة باختصار</span></span>
+          <p className="brief-text"><span lang="ar" dir="rtl">{session.brief.ar}</span></p>
+          <p className="brief-fr">{session.brief.fr}</p>
+          {session.id !== 2 && (
+            <button type="button" className="brief-toggle" onClick={() => setShowFullSituation(value => !value)} aria-expanded={showFullSituation}>
+              {showFullSituation
+                ? <><span lang="ar" dir="rtl">إخفاء التفاصيل</span></>
+                : <><BookOpen size={16} /><span lang="ar" dir="rtl">اقرأ المزيد — التفاصيل الكاملة</span></>}
+            </button>
+          )}
+        </article>
+      )}
       {session.id === 2 ? (
         <>
           <section className="s2-mission-intro" aria-labelledby="s2-mission-intro-title">
@@ -893,6 +908,7 @@ function MissionView({ session, lang, completed, onToggleCompleted, onBack, onSt
           </section>
         </>
       ) : session.id === 3 ? <Session3Overview /> : (
+        (teacherMode || !session.brief || showFullSituation) && (
         <article className="content-card situation-card simple-situation">
           <span className="card-kicker"><FolderKanban size={16} /> {labels.situation}</span>
           <div className="situation-parts">
@@ -904,6 +920,7 @@ function MissionView({ session, lang, completed, onToggleCompleted, onBack, onSt
             ))}
           </div>
         </article>
+        )
       )}
       {session.id === 2 && (
         <>

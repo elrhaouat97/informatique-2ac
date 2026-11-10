@@ -3,7 +3,8 @@
 import { publicAsset } from "../lib/public-assets";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, Calculator, Check, Copy, FileText, Folder, FolderPlus, ImageIcon, Minus, Monitor, Pencil, RotateCcw, Scissors, Search, Trash2, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Calculator, Check, Copy, FileText, Folder, FolderPlus, ImageIcon, Minus, Monitor, Pencil, RotateCcw, Scissors, Search, Trash2, X } from "lucide-react";
+import { useTeacherCourse } from "../lib/teacher-course-context";
 import type { LocalizedText } from "./course-data";
 import { session3, session3Schedule } from "./session3-data";
 import { Session3Text } from "./session3-translation";
@@ -18,6 +19,8 @@ function CopyText({ value }: { value: LocalizedText }) {
 }
 
 export function Session3Overview() {
+  const teacher = useTeacherCourse();
+  const [showStory, setShowStory] = useState(false);
   return <div className="s3-overview">
     <section className="s3-intro">
       <span className="card-kicker"><CopyText value={t("SÉANCE 3", "الحصة 3")} /></span>
@@ -27,8 +30,15 @@ export function Session3Overview() {
     </section>
     <section className="content-card s3-situation">
       <h2><CopyText value={t("Le défi de Sara", "تحدي سارة")} /></h2>
-      <p><CopyText value={session3.situation} /></p>
+      <p className="s3-brief-line"><span lang="ar" dir="rtl">سارة وصلها حاسوب كيشتغل... ولكن ما كاين لا سطح مكتب لا تطبيقات! شنو ناقص زعما؟</span></p>
+      {(teacher || showStory) && <p><CopyText value={session3.situation} /></p>}
       <strong><CopyText value={t("Le matériel seul suffit-il ? À quoi sert le système d’exploitation ?", "هل تكفي المعدات وحدها؟ وما دور نظام التشغيل؟")} /></strong>
+      {!teacher && (
+        <button type="button" className="s3-story-toggle" onClick={() => setShowStory(value => !value)} aria-expanded={showStory}>
+          <BookOpen size={16} />
+          <span lang="ar" dir="rtl">{showStory ? "إخفاء القصة" : "اقرأ قصة سارة كاملة"}</span>
+        </button>
+      )}
     </section>
     <section className="content-card s3-schedule">
       <h2><CopyText value={t("Notre parcours de 2 heures", "مسارنا خلال ساعتين")} /></h2>
