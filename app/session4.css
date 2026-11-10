@@ -164,3 +164,13 @@
   .session4-lesson .s4-practice-tasks,
   .session4-lesson .s4-recap-grid { grid-template-columns: 1fr; }
 }
+
+/* ——— Text lightening: séance 4 brief + read-more ——— */
+.s4-brief-line { font-size: 17.5px; font-weight: 700; line-height: 1.8; color: #0a2242; font-family: "Cairo", Tahoma, sans-serif; }
+.s4-more-toggle {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;
+  padding: 9px 15px; border-radius: 10px; cursor: pointer;
+  border: 1.5px solid #10355f; background: #fff; color: #10355f;
+  font-size: 14.5px; font-weight: 800;
+}
+.s4-more-toggle:hover { background: #10355f; color: #fff; }

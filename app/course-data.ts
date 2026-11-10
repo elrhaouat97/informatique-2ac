@@ -416,6 +416,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Cellules, données et calculs", "الخلايا والبيانات والحساب"),
     mission: t("Construire la feuille de dépenses d’une sortie scolaire.", "إنشاء ورقة مصاريف لرحلة مدرسية."),
     situation: t("Le club dispose d’un budget de 1 200 DH et doit prévoir transport, repas et activités.", "يتوفر النادي على ميزانية 1200 درهم لتغطية النقل والوجبات والأنشطة."),
+    brief: t(
+      "Le club a 1 200 DH pour une sortie scolaire : à vous de prévoir les dépenses sans dépasser le budget, en construisant votre première feuille Excel.",
+      "النادي عندو 1200 درهم لرحلة مدرسية، وخاصكم تحسبو المصاريف بلا ما تفوتو الميزانية. اليوم غادي تبنيو أول جدول Excel ديالكم: النقل، الماكلة، والأنشطة."
+    ),
     objectives: [
       t("Repérer lignes, colonnes, cellules et barre de formule.", "تمييز الصفوف والأعمدة والخلايا وشريط الصيغة."),
       t("Saisir et modifier des données.", "إدخال البيانات وتعديلها."),
@@ -443,6 +447,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Calculer vite sans recommencer", "الحساب بسرعة دون إعادة العمل"),
     mission: t("Automatiser les factures d’une petite librairie scolaire.", "أتمتة فواتير مكتبة مدرسية صغيرة."),
     situation: t("Vingt lignes de produits doivent être calculées. Saisir la même formule vingt fois serait trop long.", "يجب حساب عشرين سطرا من المنتجات وإعادة الصيغة عشرين مرة أمر طويل."),
+    brief: t(
+      "Une librairie doit calculer vingt lignes de produits. Réécrire la même formule vingt fois ? Aujourd’hui, Excel va la recopier pour toi.",
+      "مكتبة مدرسية عندها 20 سطر ديال المنتجات خاصهم يتحسبو. واش غادي تعاود تكتب نفس الصيغة 20 مرة؟ اليوم غادي تعلم كيفاش Excel كيعاودها بوحدو."
+    ),
     objectives: [
       t("Utiliser les opérateurs dans le bon ordre.", "استعمال العمليات بالترتيب الصحيح."),
       t("Recopier une formule avec la poignée.", "نسخ صيغة باستعمال مقبض التعبئة."),
@@ -470,6 +478,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("SOMME, MOYENNE, MIN et MAX", "SOMME وMOYENNE وMIN وMAX"),
     mission: t("Produire le bulletin statistique d’un mini-tournoi sportif.", "إعداد حصيلة إحصائية لدوري رياضي مصغر."),
     situation: t("Les résultats de huit équipes sont prêts, mais il faut rapidement connaître total, moyenne et records.", "نتائج ثمانية فرق جاهزة ويجب تحديد المجموع والمتوسط والأرقام بسرعة."),
+    brief: t(
+      "Le tournoi est terminé et les résultats des huit équipes sont là. Qui a le meilleur total ? Quelle est la moyenne ? Les fonctions d’Excel vont répondre pour toi.",
+      "الدوري الرياضي سالة، ونتائج 8 فرق واجدة. شكون جمع أكثر؟ وشنو هو المتوسط؟ اليوم غادي تخلي Excel يجاوبك بالدوال الجاهزة."
+    ),
     objectives: [
       t("Reconnaître la syntaxe d’une fonction.", "التعرف على بنية الدالة."),
       t("Utiliser SOMME, MOYENNE, MIN et MAX.", "استعمال SOMME وMOYENNE وMIN وMAX."),
@@ -497,6 +509,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Mise en forme et graphiques", "التنسيق والمبيانات"),
     mission: t("Transformer des chiffres bruts en une affiche lisible sur la consommation d’eau.", "تحويل أرقام خام إلى ملصق واضح حول استهلاك الماء."),
     situation: t("L’éco-club possède les relevés mensuels, mais le tableau est illisible pour les visiteurs.", "يتوفر النادي البيئي على بيانات شهرية لكن الجدول غير واضح للزوار."),
+    brief: t(
+      "L’éco-club a les relevés d’eau du collège, mais son tableau est illisible. Ta mission : le transformer en une affiche claire que tout le monde comprend.",
+      "النادي البيئي عندو أرقام استهلاك الماء ديال الشهور، ولكن الجدول معقد وما كيفهمو حد. مهمتك: تحولو لملصق واضح يفهمو أي زائر."
+    ),
     objectives: [
       t("Appliquer une mise en forme cohérente.", "تطبيق تنسيق منسجم."),
       t("Choisir un graphique adapté aux données.", "اختيار مبيان ملائم للبيانات."),
@@ -524,6 +540,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Conditions et références absolues", "الشروط والمراجع المطلقة"),
     mission: t("Créer un tableau qui attribue automatiquement une appréciation.", "إنشاء جدول يمنح التقدير آليا."),
     situation: t("Le responsable du club veut afficher “Objectif atteint” dès qu’un groupe obtient au moins 10 points.", "يريد مسؤول النادي إظهار «تم بلوغ الهدف» عندما تحصل المجموعة على 10 نقط على الأقل."),
+    brief: t(
+      "Le responsable du club veut un tableau qui décide tout seul : dès qu’un groupe atteint 10 points, « Objectif atteint » s’affiche. C’est le rôle de la fonction SI.",
+      "مسؤول النادي بغا الجدول يقرر بوحدو: إلا جابت المجموعة 10 نقط ولا أكثر، يظهر «تم بلوغ الهدف». اليوم غادي تعلم Excel يقول «إلا... إذن» بالدالة SI."
+    ),
     objectives: [
       t("Construire une condition simple avec SI.", "بناء شرط بسيط باستعمال SI."),
       t("Utiliser les opérateurs de comparaison.", "استعمال معاملات المقارنة."),
@@ -551,6 +571,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Synthèse, contrôle et présentation", "التركيب والتحقق والعرض"),
     mission: t("Livrer un tableau de bord complet pour la journée culturelle du collège.", "إنجاز لوحة قيادة متكاملة لليوم الثقافي بالمؤسسة."),
     situation: t("Il faut suivre les inscriptions, les dépenses et la participation, puis présenter un bilan au directeur.", "يجب تتبع التسجيلات والمصاريف والمشاركة ثم تقديم حصيلة للمدير."),
+    brief: t(
+      "La journée culturelle approche : inscriptions, dépenses et participation à suivre, puis un bilan complet à présenter au directeur. C’est ton projet Excel.",
+      "اليوم الثقافي قرب! خاصك تتبع التسجيلات والمصاريف والمشاركة، وتقدم للمدير لوحة قيادة كاملة وواضحة. هذا هو مشروع Excel ديالك."
+    ),
     objectives: [
       t("Mobiliser formules, fonctions, SI et graphiques.", "توظيف الصيغ والدوال وSI والمبيانات."),
       t("Contrôler la cohérence d’un classeur.", "التحقق من اتساق المصنف."),
@@ -578,6 +602,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Instructions et repérage", "التعليمات والتموقع"),
     mission: t("Programmer un robot-tortue pour tracer un parcours précis.", "برمجة سلحفاة آلية لرسم مسار دقيق."),
     situation: t("La tortue doit rejoindre la sortie d’un labyrinthe sans traverser les murs.", "على السلحفاة بلوغ مخرج المتاهة دون اختراق الجدران."),
+    brief: t(
+      "Une tortue-robot est dans un labyrinthe : elle doit atteindre la sortie sans traverser les murs. C’est toi qui vas la programmer, pas à pas.",
+      "كاينة سلحفاة آلية وسط متاهة، وخاصها توصل للمخرج بلا ما تضرب في الحيطان. نتا هو اللي غادي تبرمجها خطوة بخطوة."
+    ),
     objectives: [
       t("Exécuter AV, RE, TD et TG.", "تنفيذ AV وRE وTD وTG."),
       t("Prévoir l’effet d’une suite d’instructions.", "توقع أثر سلسلة تعليمات."),
@@ -605,6 +633,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Angles, couleurs et remplissage", "الزوايا والألوان والتعبئة"),
     mission: t("Créer une enseigne géométrique colorée pour le laboratoire.", "إنشاء لافتة هندسية ملونة للمختبر."),
     situation: t("L’enseigne doit contenir carré, triangle et cercle sans lignes inutiles.", "يجب أن تتضمن اللافتة مربعا ومثلثا ودائرة دون خطوط زائدة."),
+    brief: t(
+      "Le laboratoire veut une enseigne colorée avec un carré, un triangle et un cercle, sans un trait de trop. À toi de la tracer avec la tortue.",
+      "المختبر خاصو لافتة هندسية ملونة فيها مربع ومثلث ودائرة، بلا خطوط زايدة. بالسلحفاة والأوامر الصحيحة، غادي ترسمها نتا."
+    ),
     objectives: [
       t("Associer figure et angle de rotation.", "ربط الشكل بزاوية الدوران."),
       t("Lever et poser le crayon au bon moment.", "رفع القلم ووضعه في الوقت المناسب."),
@@ -632,6 +664,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Boucles et motifs", "الحلقات والزخارف"),
     mission: t("Réduire un long programme de mosaïque à quelques lignes.", "اختصار برنامج طويل للفسيفساء إلى بضعة أسطر."),
     situation: t("Le premier programme répète huit fois les mêmes commandes. Il fonctionne, mais il est difficile à corriger.", "يكرر البرنامج الأول نفس التعليمات ثماني مرات؛ يعمل لكنه صعب التصحيح."),
+    brief: t(
+      "Le programme de la mosaïque fonctionne, mais il répète huit fois les mêmes commandes. Aujourd’hui, tu vas le réduire à quelques lignes grâce à la répétition.",
+      "برنامج الفسيفساء خدام، ولكن فيه نفس الأوامر مكررة 8 مرات وطويل بزاف. اليوم غادي تختصرو في أسطر قليلة بأمر التكرار."
+    ),
     objectives: [
       t("Repérer une séquence répétitive.", "اكتشاف تسلسل متكرر."),
       t("Utiliser la commande REPETE.", "استعمال التعليمة REPETE."),
@@ -659,6 +695,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Décomposer et réutiliser", "التفكيك وإعادة الاستعمال"),
     mission: t("Programmer un zellige en construisant une bibliothèque de motifs.", "برمجة زليج عبر بناء مكتبة زخارف."),
     situation: t("Plusieurs parties du dessin utilisent le même losange. Le recopier partout rend le programme illisible.", "تستعمل أجزاء كثيرة من الرسم نفس المعين ونسخه في كل مكان يجعل البرنامج غير واضح."),
+    brief: t(
+      "Le zellige répète le même losange partout et le programme devient illisible. La solution : construire ta bibliothèque de motifs et les réutiliser.",
+      "رسم الزليج فيه نفس المعين كيتعاود في بلايص كثيرة، والبرنامج ولا ما كيتقراش. الحل: تبني مكتبة ديال الزخارف وتستعملها وقت ما تحتاجها."
+    ),
     objectives: [
       t("Définir et appeler une procédure.", "تعريف إجراء واستدعاؤه."),
       t("Décomposer un dessin complexe.", "تفكيك رسم معقد."),
@@ -686,6 +726,10 @@ export const sessions: CourseSession[] = [
     subtitle: t("Concevoir, programmer et présenter", "التصميم والبرمجة والعرض"),
     mission: t("Créer une scène animée qui mobilise tout le parcours Logo.NET.", "إنشاء مشهد متحرك يوظف كل مكتسبات Logo.NET."),
     situation: t("Chaque binôme propose un quartier durable avec bâtiments, arbres, signalisation et un élément animé.", "تقترح كل ثنائية حيا مستداما بمبان وأشجار وعلامات وعنصر متحرك."),
+    brief: t(
+      "C’est le projet final : imagine avec ton binôme un quartier durable complet — bâtiments, arbres, signalisation et un élément animé — avec tout ce que tu as appris en Logo.",
+      "المشروع الأخير وصل! غادي تصمم مع زميلك حي مستدام كامل: بنايات، أشجار، علامات، وحاجة كتحرك — بكلشي تعلمتيه في Logo."
+    ),
     objectives: [
       t("Planifier un projet par étapes.", "تخطيط مشروع على مراحل."),
       t("Combiner instructions, boucles et procédures.", "دمج التعليمات والحلقات والإجراءات."),
