@@ -1,0 +1,22 @@
+name: Import site zip
+on:
+  push:
+    paths: [site.zip]
+permissions:
+  contents: write
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unzip site into repo root
+        run: |
+          unzip -o site.zip -d .
+          rm -f site.zip .github/workflows/unzip.yml
+      - name: Commit imported files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Import LAB 2AC course site" || echo "no changes"
+          git push
